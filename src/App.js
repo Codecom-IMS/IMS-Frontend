@@ -1,22 +1,57 @@
-import logo from './logo.svg';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
+import { AddStudentPage, AddTeacherPage, DeleteStudentPage, DeleteTeacherPage, LandingPage, MainPage, StudentPage, TeacherPage, UpdateStudentPage, UpdateTeacherPage, Waves } from './components';
+const router = createBrowserRouter([{
+  path: "/",
+  element: <LandingPage />,
+  children: [
+    {
+      path: "/mainPage",
+      element: <MainPage />
+    },
+    {
+      path: "/mainPage/studentPage",
+      element: <StudentPage/>
+    },
+    {
+      path:"/mainPage/teacherPage",
+      element: <TeacherPage/>
+    },
+    {
+      path: "/mainPage/studentPage/addStudentPage",
+      element: <AddStudentPage/>
+    },
+    {
+      path: "/mainPage/studentPage/updateStudentPage",
+      element: <UpdateStudentPage/>
+    },
+    {
+      path: "/mainPage/studentPage/deleteStudentPage",
+      element: <DeleteStudentPage/>
+    },
+    {
+      path: "/mainPage/teacherPage/addTeacherPage",
+      element: <AddTeacherPage/>
+    },
+    {
+      path: "/mainPage/teacherPage/updateTeacherPage",
+      element: <UpdateTeacherPage/>
+    },
+    {
+      path: "/mainPage/teacherPage/deleteTeacherPage",
+      element: <DeleteTeacherPage/>
+    }
+  ]
+}])
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div className='inner-header flex'>
+          <RouterProvider router={router} />
+        </div>
+        <Waves/>
       </header>
     </div>
   );

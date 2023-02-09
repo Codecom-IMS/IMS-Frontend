@@ -1,0 +1,42 @@
+.fields-div{
+    width: 100%;
+    padding: 0.4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width:900px) {
+    .fields-div{
+        flex-direction: column;
+        justify-content: start;
+        align-items: flex-start;
+    }
+}
+
+
+
+.radio-div{
+    width: 100%;
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+@media screen and (max-width:900px){
+    .radio-div{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+.radio-container{
+    margin-left: 8rem;
+    padding-top: 1rem;
+    
+}
+@media screen and (max-width:900px) {
+    .radio-container{
+        margin-left: 0;
+    }
+}

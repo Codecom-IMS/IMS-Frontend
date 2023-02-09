@@ -1,3 +1,14 @@
+:root {
+  --primary-light: #8abdff;
+  --primary: #6d5dfc;
+  --primary-dark: #5b0eeb;
+  --white: #FFFFFF;
+  --greyLight-1: #E4EBF5;
+  --greyLight-2: #c8d0e7;
+  --greyLight-3: #bec8e4;
+  --greyDark: #9baacf;
+}
+
 .App {
   text-align: center;
 }
@@ -14,18 +25,15 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  position: relative;
+  background: linear-gradient(
+    60deg,
+    rgba(84, 58, 183, 1) 0%,
+    rgba(0, 172, 193, 1) 100%
+  );
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
+  justify-content: center;
+  align-items: center;
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +43,52 @@
   to {
     transform: rotate(360deg);
   }
+}
+label{
+  color: var(--primary-dark);
+  padding: 0.4rem;
+}
+.bar{
+  height:100%;
+  width:100%;
+  background: white;
+  position: sticky;
+  z-index:100;
+}
+@media screen and (max-width: 650px) {
+  .card-container {
+    flex-direction: column;
+  }
+}
+.card-container{
+  display: grid;
+  grid-template-columns: 17.6rem 19rem 20.4rem;
+  grid-template-rows: repeat(autofit, min-content);
+  grid-column-gap: 5rem;
+  grid-row-gap: 2.5rem;
+  align-items: center;
+  background: var(--greyLight-1);
+  display: flex;
+}
+.radio-container{
+  display: flex;
+  flex-direction: row;
+}
+.inner-header {
+
+  height: fit-contents;
+  width: 100%;
+  margin: 0;
+  padding: 5px;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+.wavesDiv{
+ height: auto;
 }
