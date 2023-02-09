@@ -1,0 +1,45 @@
+.App-header {
+  padding-top: 20px;
+  position: relative;
+  text-align: center;
+  background: linear-gradient(
+    60deg,
+    rgba(84, 58, 183, 1) 0%,
+    rgba(0, 172, 193, 1) 100%
+  );
+}
+.inner-header flex {
+  width: "100%";
+  display: "flex";
+  justify-content: "center";
+  align-items: "center";
+  text-align: "center";
+}
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+.feediv {
+  width: fit-content;
+  height: 60vh;
+  border-radius: 1rem;
+  
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: 17.6rem 19rem 20.4rem;
+  grid-template-rows: repeat(autofit, min-content);
+  grid-column-gap: 5rem;
+  grid-row-gap: 2.5rem;
+  align-items: normal;
+  background: var(--primary);
+  display: flex;
+  flex-direction: row;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  justify-content: space-between;
+}
+
+/* align-items: center; */
