@@ -13,7 +13,6 @@
   }
 }
 
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -29,7 +28,6 @@
   padding: 0;
 }
 
-
 .logo {
   width: 50px;
   fill: white;
@@ -37,6 +35,6 @@
   display: inline-block;
   vertical-align: middle;
 }
-.wavesDiv{
- height: auto;
+.wavesDiv {
+  height: auto;
 }

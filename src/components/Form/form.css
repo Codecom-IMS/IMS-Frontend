@@ -28,11 +28,11 @@
   border-radius: 1rem;
   font-size: 1.4rem;
   padding-left: 1.4rem;
-  box-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2),
-    inset -0.2rem -0.2rem 0.5rem var(--white);
+  box-shadow: 0.2rem 0.2rem 0.5rem var(--greyLight-2),
+    -0.2rem -0.2rem 0.5rem var(--white);
   background: none;
   font-family: inherit;
-  color: var(--greyDark);
+  color: var(--primary);
   padding-top: 5px;
 }
 .form__input::placeholder {
@@ -40,13 +40,13 @@
 }
 .form__input:focus {
   outline: none;
-  box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2),
-    -0.2rem -0.2rem 0.5rem var(--white);
+  box-shadow: inset 0.3rem 0.3rem 0.6rem var(--greyLight-2),
+    inset -0.2rem -0.2rem 0.5rem var(--white);
 }
 .h1 {
   font-size: 1.2rem;
   margin-left: -1.8rem;
-  color: black;
+  color: var(--greyDark);
   padding-right: 20px;
   padding-bottom: 10px;
   font: "lato";

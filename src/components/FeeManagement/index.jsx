@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./feemanagement.css";
 import {
   MainBox,
@@ -8,23 +8,29 @@ import {
   Waves,
   Navbar,
   AddFeeDiv,
-  Field
+  Field,
+  NotifyToast,
 } from "../index";
-
+import { toast } from "react-toastify";
+import "react-toastify/ReactToastify.min.css";
 
 function FeeManagement() {
-  const [inputData, setInputData] = useState("");
+  const [rollNumberInputData, setRollNumberInputData] = useState("");
   const [apiData, setapiData] = useState({
     studentDetails: [],
   });
-  const handleChange = (newData) => {
-    setInputData(newData);
+  const [feeInputData, setfeeInputData] = useState("");
+  const rollhandleChange = (newData) => {
+    setRollNumberInputData(newData);
   };
-
+  const feeHandleChange = (newData) => {
+    setfeeInputData(newData);
+  };
+  console.log(rollNumberInputData);
   const searchStudent = async () => {
     const method = "GET";
     const getStudentDetails = await fetch(
-      `http://localhost:5000/api/admin/feeDetails?roll_number=${inputData}`,
+      `http://localhost:5000/api/admin/feeDetails?roll_number=${rollNumberInputData}`,
       {
         method,
         headers: { "Content-type": "Application/json" },
@@ -34,69 +40,97 @@ function FeeManagement() {
     console.log(result);
     setapiData(result);
   };
+  const feeData = {
+    current_paid_fee: feeInputData,
+    roll_number: rollNumberInputData,
+  };
+  const addNotification = () => {
+    toast("Fee paid successfully.", {
+      type: "success",
+    });
+  };
   const addFee = async () => {
-    const method = "post";
-    const getStudentDetails = await fetch(
-      `http://localhost:5000/api/admin/addFee?roll_number=${inputData}`,
+    const method = "POST";
+    await fetch(
+      `http://localhost:5000/api/admin/addFee`,
       {
         method,
         headers: { "Content-type": "Application/json" },
-      }
+        body: JSON.stringify(feeData),
+      },
+      setapiData({ studentDetails: [] })
     );
-    const result = await getStudentDetails.json();
-    setapiData(result);
+    addNotification();
   };
-  // useEffect(()=>{
-  //   console.log('useEffectApi',apiData?.studentDetails)
-  // },[apiData])
+
+  let total =
+    parseInt(apiData.studentDetails[0]?.basic_fee) +
+    parseInt(apiData.studentDetails[0]?.others) +
+    parseInt(apiData?.PrevArrears?.arrears);
 
   return (
     <div className="App-header">
       <Navbar />
       <div className="inner-header flex">
-        {apiData?.studentDetails.length === 0? (
+        {apiData?.studentDetails.length === 0 ? (
           <MainBox>
             <HeaderChip />
             <Form
-              text="Enter students roll number"
+              text="Enter Roll Number"
               type="number"
               placeholder="e.g F18-1138"
-              handleChange={handleChange}
+              handleChange={rollhandleChange}
             />
             <Button buttonName="search" buttonChange={searchStudent} />
-
-            
           </MainBox>
         ) : (
           <AddFeeDiv>
             <HeaderChip />
-            <div className="feediv">
-               <Field text="Student Name :" data={apiData.studentDetails[0]?.student_name} >student name :</Field>
-            
-               <br />{" "}
-              basic fee : {apiData.studentDetails[0]?.basic_fee}
-              <br /> others : {apiData.studentDetails[0]?.others}
-              <br /> roll number : {apiData.studentDetails[0]?.roll_number}{" "}
-              <br /> previous arrears :{" "}
-              {apiData?.PrevArrears?.arrears == undefined
-                ? 0
-                : apiData?.PrevArrears?.arrears}
-                 <Form
-              text="Enter fee "
-              type="number"
-              placeholder="e.g 2800"
-              handleChange={handleChange}
-            />
-            <Button buttonName="search" buttonChange={addFee} />
-                
-           
-            </div >
+
+            <div className="feediv1">
+              <Field
+                text="Student Name :"
+                data={apiData.studentDetails[0]?.student_name}
+              />
+              <Field
+                text=" basic fee :"
+                data={apiData.studentDetails[0]?.basic_fee}
+              />
+              <Field
+                text="others : "
+                data={apiData.studentDetails[0]?.others}
+              />
+            </div>
+            <div className="feediv2">
+              <Field
+                text=" roll number :"
+                data={apiData.studentDetails[0]?.roll_number}
+              />
+              <Field
+                text=" previous arrears :"
+                data={
+                  apiData?.PrevArrears?.arrears === undefined
+                    ? 0
+                    : apiData?.PrevArrears?.arrears
+                }
+              />
+              <Field text=" Total Fee " data={total} />
+            </div>
+            <div className="feediv3">
+              <Form
+                type="number"
+                placeholder="e.g 2800"
+                handleChange={feeHandleChange}
+              />
+              <Button buttonName="Add Fee" buttonChange={addFee} />
+            </div>
           </AddFeeDiv>
         )}
       </div>
       <div className="wavesdiv">
         <Waves />
       </div>
+      <NotifyToast />
     </div>
   );
 }

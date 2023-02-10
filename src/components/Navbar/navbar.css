@@ -1,58 +1,58 @@
 :root {
-    --primary-light: #8abdff;
-    --primary: #6d5dfc;
-    --primary-dark: #5b0eeb;
-    --white: #FFFFFF;
-    --greyLight-1: #E4EBF5;
-    --greyLight-2: #c8d0e7;
-    --greyLight-3: #bec8e4;
-    --greyDark: #9baacf;
-  }
-  
-  *, *::before, *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
-  }
-  .Navbar {
-    grid-column: 2/3;
-    grid-row: 3/4;
-    justify-self: center;
-    width: 50rem;
-    height: 3rem;
-    border-radius: 1rem;
-    box-shadow: 0.8rem 0.8rem 0.8rem rgb(78, 78, 161),
+  --primary-light: #8abdff;
+  --primary: #6d5dfc;
+  --primary-dark: #5b0eeb;
+  --white: #ffffff;
+  --greyLight-1: #e4ebf5;
+  --greyLight-2: #c8d0e7;
+  --greyLight-3: #bec8e4;
+  --greyDark: #9baacf;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+.Navbar {
+  grid-column: 2/3;
+  grid-row: 3/4;
+  justify-self: center;
+  width: 50rem;
+  height: 3rem;
+  border-radius: 1rem;
+  box-shadow: 0.8rem 0.8rem 0.8rem rgb(78, 78, 161),
     -0.2rem -0.2rem 1rem rgb(78, 78, 161);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--white) ;
-    margin-left: 25% ;
-     ;
-    
-  }
-  .Navbar__icon {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 1rem;
-    margin: 0 0 0 0.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.8rem;
-    color: var(--primary);
-  }
-  .Navbar p {
-    font-size: 0.9rem;
-    margin-left: -1.8rem;
-    color: var(--greyDark);
-  }
-  .Navbar__close {
-    width: 1.6rem;
-    height: 1.6rem;
-    margin: 0 0.5rem;
-    display: flex;
-    font-size: 1.6rem;
-    color: var(--greyLight-3);
-    cursor: pointer;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--white);
+  margin-left: 25%;
+}
+.Navbar__icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  margin: 0 0 0 0.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  color: var(--primary);
+}
+.Navbar p {
+  font-size: 0.9rem;
+  margin-left: -1.8rem;
+  color: var(--greyDark);
+}
+.Navbar__close {
+  width: 1.6rem;
+  height: 1.6rem;
+  margin: 0 0.5rem;
+  display: flex;
+  font-size: 1.6rem;
+  color: var(--greyLight-3);
+  cursor: pointer;
+}

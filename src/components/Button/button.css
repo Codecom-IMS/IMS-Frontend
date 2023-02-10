@@ -38,7 +38,7 @@
     inset -0.2rem -0.2rem 1rem var(--primary-dark),
     0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
   color: var(--greyLight-1);
-  border:none;
+  border: none;
 }
 .btn__primary:hover {
   color: var(--white);

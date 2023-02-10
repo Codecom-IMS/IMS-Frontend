@@ -1,11 +1,9 @@
 import React from "react";
-import './mainDiv.css'
-function MainBox({children}) {
+import "./mainDiv.css";
+function MainBox({ children }) {
   return (
-    <div className="container" >
-      <div className="components" >
-        {children}
-      </div>
+    <div className="container">
+      <div className="components">{children}</div>
     </div>
   );
 }

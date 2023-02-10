@@ -1,13 +1,11 @@
-import React from 'react'
-import'./addfee.css'
-function AddFeeDiv({children}) {
+import React from "react";
+import "./addfee.css";
+function AddFeeDiv({ children }) {
   return (
-    <div className="AddFeeContainer" >
-      <div className="AddFeeComponents" >
-        {children}
-      </div>
+    <div className="AddFeeContainer">
+      <div className="AddFeeComponents">{children}</div>
     </div>
-  )
+  );
 }
 
-export default AddFeeDiv
+export default AddFeeDiv;

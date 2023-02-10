@@ -1,10 +1,11 @@
 import React from "react";
 import "./dataField.css";
-function Field({data, text}) {
+function Field({ data, text }) {
   return (
-    <div>
-      <h1>{text}</h1>
-      <div className="field__input">{data}</div>
+    <div className="field_div">
+      <div className="field__input">
+        {text} <span className="span__head">{data}</span>
+      </div>
     </div>
   );
 }
