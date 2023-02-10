@@ -1,11 +1,15 @@
 export { default as Waves } from "./Waves";
 export { default as MainBox } from "./UserManagementMainDiv";
-export { default as Layout } from "./Layout/Layout";
+export {default as NavBar} from "./NavBar";
 export { default as HeaderChip } from "./ModuleTitle";
 export {default as BlueButton} from "./BlueButton";
+export {default as RedButton} from "./RedButton";
 export {default as Card} from "./Card";
 export {default as RadioButton} from "./RadioButton";
 export {default as InputField} from "./InputField";
+export {default as StudentForm} from "./StudentForm";
+export {default as TeacherForm} from "./TeacherForm";
+export {default as Toast} from "./Taost";
 export {default as MainPage} from "./MainPage";
 export {default as StudentPage} from "./StudentPage";
 export {default as TeacherPage} from "./TeacherPage";

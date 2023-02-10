@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
-import { AddStudentPage, AddTeacherPage, DeleteStudentPage, DeleteTeacherPage, LandingPage, MainPage, StudentPage, TeacherPage, UpdateStudentPage, UpdateTeacherPage, Waves } from './components';
+import { AddStudentPage, AddTeacherPage, DeleteStudentPage, DeleteTeacherPage, LandingPage, MainPage, NavBar, StudentPage, TeacherPage, UpdateStudentPage, UpdateTeacherPage, Waves } from './components';
 const router = createBrowserRouter([{
   path: "/",
   element: <LandingPage />,
@@ -49,6 +49,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className='inner-header flex'>
+          <NavBar/>
           <RouterProvider router={router} />
         </div>
         <Waves/>

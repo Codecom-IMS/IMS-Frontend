@@ -1,5 +1,5 @@
 import React from "react";
-import { MainBox, Card, HeaderChip, TeacherPage } from "../index";
+import { MainBox, Card, HeaderChip,} from "../index";
 import studentImage from "../../assets/student.png"
 
 const StudentPage = () => {
