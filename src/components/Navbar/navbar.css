@@ -1,0 +1,52 @@
+:root {
+  --primary-light: #8abdff;
+  --primary: #6d5dfc;
+  --primary-dark: #5b0eeb;
+  --white: #ffffff;
+  --greyLight-1: #e4ebf5;
+  --greyLight-2: #c8d0e7;
+  --greyLight-3: #bec8e4;
+  --greyDark: #9baacf;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+.Navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 56rem;
+  height: 4rem;
+  border-radius: 1rem;
+  box-shadow: 0.8rem 0.8rem 0.8rem rgb(78, 78, 161),
+    -0.2rem -0.2rem 1rem rgb(78, 78, 161);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: white;
+  padding: 0 2rem;
+}
+
+@media (min-width: 56rem) {
+  .Navbar {
+    width: 56rem;
+  }
+}
+
+.Navbar__icon {
+  font-size: 2rem;
+  color: #333;
+}
+
+.Navbar p {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0;
+}
