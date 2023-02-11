@@ -1,5 +1,5 @@
 import React from "react";
-import {FaArrowLeft, FaHome } from "react-icons/fa";
+import { FaArrowLeft, FaHome } from "react-icons/fa";
 import "./NavBar.css";
 function Navbar() {
   return (
@@ -8,12 +8,12 @@ function Navbar() {
         <div class="Navbar__icon">
           <FaArrowLeft />
         </div>
-        <text style={{color: "black"}}>Institute Monitoring System</text>
+        <text style={{ color: "black" }}>Institute Monitoring System</text>
         <div class="Navbar__icon">
-        <FaHome />
+          <FaHome />
         </div>
       </div>
-      </div>
+    </div>
   );
 }
 

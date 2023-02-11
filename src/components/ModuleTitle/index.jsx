@@ -1,5 +1,5 @@
-import React from 'react'
-import './ModuleTitle.css'
+import React from "react";
+import "./ModuleTitle.css";
 const HeaderChip = ({ headerText }) => {
   return (
     <div>
@@ -7,7 +7,7 @@ const HeaderChip = ({ headerText }) => {
         <h1>{headerText}</h1>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HeaderChip
+export default HeaderChip;
