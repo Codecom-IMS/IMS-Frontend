@@ -27,7 +27,16 @@ const AdminLogin = ({ Admin }) => {
       if (response) {
         console.log("if condition working");
         const jwt = response.data.data.token;
-        Cookies.set("Jwt", jwt);
+        Cookies.set("Jwt", jwt,
+        {
+        
+        expires: 1, // expires in 7 days
+        secure: true, // only send cookie over HTTPS
+        sameSite: "strict", // prevent cross-site scripting
+        // httpOnly: true // only accessible on the server-side
+        }
+        
+        );
         console.log("Jwt value: ", Cookies.get("Jwt"));
         Navigate("/admin-dashboard");
         // window.location.href = "/admin-dashboard";

@@ -3,8 +3,8 @@ import LandingPage from "./components/landing-page/index.jsx";
 import AdminLogin from "./components/Login/admin-login/index.jsx";
 import { Waves } from "./components";
 import TeacherLogin from "./components/Login/teacher-login/index.jsx";
-import TeacherDashboard from "./components/Dashboard/teacherDashboard";
-import AdminDashboard from "./components/Dashboard/adminDashboard";
+import AdminDashboard from "./components/Dashboard/admin-dashboard/adminDashboard.jsx";
+import TeacherDashboard from "./components/Dashboard/teacher-dashboard/teacherDashboard.jsx";
 import StartPoint from "./components/StartPoint";
 import "./_App.css";
 

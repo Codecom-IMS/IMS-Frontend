@@ -26,8 +26,13 @@ Link:active {
   padding: 10px;
 }
 .user-title-div {
-  color: black;
+  color: var(--greyLight-1);
 }
-/* img{
-    width: 20vh;
-} */
+
+.user-title-div:hover {
+  color: white;
+}
+.title-text {
+  font-size: 12.5px;
+
+}

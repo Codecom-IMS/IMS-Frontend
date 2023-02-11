@@ -8,20 +8,12 @@ import MainBox from "../../MainBox";
 import Cookies from "js-cookie";
 import "./style.css";
 
-
-
-
-
 const TeacherLogin = ({ Teacher }) => {
-
   const Navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   // const location = useLocation();
-
-
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -53,9 +45,6 @@ const TeacherLogin = ({ Teacher }) => {
       setError(true);
     }
   };
-
-
-
 
   return (
     <>
