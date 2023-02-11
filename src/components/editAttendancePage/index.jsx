@@ -4,91 +4,78 @@ import FetchApi from "../FetchApi";
 import Form from "../Form";
 import HeaderChip from "../HeaderChip";
 import MainBox from "../MainDiv";
-import Navbar from "../Navbar";
 import Table from "../Table";
-import Waves from "../Waves";
 export default function InputAttendance() {
-  const [inputData, setInputData] = useState("");
-  const [inputDate, setInputDate] = useState("");
-  const [condition, setCondition] = useState(false);
+  const [inputData, SetInputData] = useState("");
+  const [inputDate, SetInputDate] = useState("");
+  const [condition, SetCondition] = useState(false);
   const [apiData, SetApiData] = useState({});
-  const [apiData2, SetApiDat2] = useState({});
-  const date = inputDate;
-  const handleDataChange = (newData) => {
-    setInputData(newData);
+  let attendance = [];
+  const handleInputDataChange = (event) => {
+    SetInputData(event.target.value);
   };
-  const handleDateChange = (newData) => {
-    setInputDate(newData);
+  const handleInputDateChange = (event) => {
+    SetInputDate(event.target.value);
   };
-  const buttonChange = async () => {
-    const endPoint = `teacher/attendancePage/editAttendance?class=${inputData}&date=${date}`;
-    const endPoint2 = `teacher/attendancePage/inputAttendance?class=${inputData}`;
+  const searchButtonChange = async () => {
+    const endPoint = `teacher/attendancePage/editAttendance?class=${inputData}&date=${inputDate}`;
     const method = "GET";
-    const data = { class: inputData };
-    const result = await FetchApi(endPoint, method, data);
-    const result2 = await FetchApi(endPoint2, method, data);
+    const result = await FetchApi(endPoint, method);
     SetApiData(result);
-    SetApiDat2(result2);
-    setCondition(true)
+    if (result.status === 200) {
+      alert("Data Found");
+      SetCondition(true);
+    } else {
+      alert("No Data Found! Invalid Input");
+    }
   };
-  if(condition === false){return (
-    <div className="App-header">
-      <div
-        className="inner-header flex"
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          textAlign: "center",
-        }}
-      >
-        <Navbar children={"Edit Attendance"} />
-        <MainBox>
-          <HeaderChip children={"Edit Attendance"} />
-          <Form
-            text="Enter Class"
-            type="text"
-            placeholder="1-10"
-            handleChange={handleDataChange}
-          />
-          <Form
-            text="Enter Date"
-            type="text"
-            placeholder="2023-12-30"
-            handleChange={handleDateChange}
-          />
-          <Button buttonName="Search" buttonChange={buttonChange} />
-        </MainBox>
-      </div>
-      <div className="wavesdiv">
-        <Waves />
-      </div>
-    </div>
-  );}
-  else{
+  const submitButtonChange = async () => {
+    if (attendance.length !== 0) {
+      const endPoint = `teacher/attendancePage/editAttendance`;
+      const method = "PUT";
+      const data = {
+        class: inputData,
+        attendance: attendance,
+        date: inputDate,
+      };
+      const result = await FetchApi(endPoint, method, data);
+      if (result.status === 200) {
+        alert("Operation Succesfull");
+      }
+      SetInputData("");
+      SetCondition(false);
+    } else if (apiData.status !== 200 && attendance.length === 0) {
+      SetCondition(false);
+    } else {
+      alert("No Data Selected");
+    }
+  };
     return (
-      <div className="App-header">
-        <div
-          className="inner-header flex"
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
-          }}
-        >
-          <Navbar children={"Edit Attendance"} />
-          <MainBox>
-            <Table apiData={apiData} apiData2={apiData2} condition={condition} />
-            <Button buttonName="Submit" buttonChange={buttonChange} />
-          </MainBox>
-        </div>
-        <div className="wavesdiv">
-          <Waves />
-        </div>
-      </div>
-    )
-  }
+      <MainBox>
+        {condition ? (
+          <>
+            <Table apiData={apiData} type="edit" attendance={attendance} />
+            <Button buttonName="Submit" buttonChange={submitButtonChange} />
+          </>
+        ) : (
+          <>
+            <HeaderChip children={"Edit Attendance"} />
+            <Form
+              text="Enter Class"
+              type="text"
+              placeholder="1-10"
+              handleChange={handleInputDataChange}
+            />
+            <Form
+              text="Enter Date"
+              type="Date"
+              placeholder="2023-12-30"
+              handleChange={handleInputDateChange}
+            />
+            <Button buttonName="Search" buttonChange={searchButtonChange} />
+          </>
+        )}
+      </MainBox>
+    );
+  
 }

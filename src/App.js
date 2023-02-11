@@ -2,7 +2,6 @@ import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import InputAttendancePage from "./components/inputAttendancePage";
 import EditAttendancePage from "./components/editAttendancePage";
-import Dashboard from "./components/dashboard";
 import StartPoint from "./components/StartPoint";
 
 function App() {
@@ -12,16 +11,12 @@ function App() {
       element: <StartPoint />,
       children: [
         {
-          path: "/inputAttendance",
+          path: "/",
           element: <InputAttendancePage />,
         },
         {
           path: "/editAttendance",
           element: <EditAttendancePage/>,
-        },
-        {
-          path: "/dashBoard",
-          element: <Dashboard />,
         },
       ],
     },

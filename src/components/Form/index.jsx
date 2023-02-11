@@ -2,9 +2,9 @@ import "./form.css";
 function Form({text, type, placeholder, handleChange}) {
   return (
     <div>
-      <div class="form">
+      <div className="form">
         <h1 className="h1">{text}</h1>
-        <input type={type} class="form__input" placeholder={placeholder} onChange={(events) => handleChange(events.target.value)} />
+        <input type={type} className="form__input" placeholder={placeholder} onChange={handleChange} />
       </div>
     </div>
   );

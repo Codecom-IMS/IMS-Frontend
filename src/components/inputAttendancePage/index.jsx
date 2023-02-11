@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import MainBox from "../MainDiv";
-import Navbar from "../Navbar";
-import Waves from "../Waves";
 import Form from "../Form";
 import Headerchip from "../HeaderChip";
 import Button from "../Button";
@@ -11,73 +9,60 @@ export default function InputAttendance() {
   const [inputData, SetInputData] = useState("");
   const [apiData, SetApiData] = useState({});
   const [condition, SetCondition] = useState(false);
-  const handleChange = (newData) => {
-    SetInputData(newData);
+  let attendance = [];
+  const handleInputDataChange = (event) => {
+    SetInputData(event.target.value);
   };
-  const buttonChange = async () => {
+  const searchButtonChange = async () => {
     const endPoint = `teacher/attendancePage/inputAttendance?class=${inputData}`;
     const method = "GET";
-    const data = { class: inputData };
-    const result = await FetchApi(endPoint, method, data);
+    const result = await FetchApi(endPoint, method);
     SetApiData(result);
-    SetCondition(true)
+    if(result.status === 200)
+    {
+      alert("Data Found")
+      SetCondition(true);}
+    else{
+      alert("No Data Found! Invalid Input")
+    }
   };
-  if(condition === false)
-  {return (
-    <div className="App-header">
-      <div
-        className="inner-header flex"
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          textAlign: "center",
-        }}
-      >
-        <Navbar />
-        <MainBox>
+  const submitButtonChange = async () => {
+    if (attendance.length !== 0) {
+      const endPoint = `teacher/attendancePage/inputAttendance?className=${inputData}`;
+      const method = "POST";
+      const data = { class: inputData, attendance: attendance };
+      const result = await FetchApi(endPoint, method, data);
+      if (result.status === 200) {
+        alert("Operation Succesfull");
+      }
+      SetInputData("");
+      SetCondition(false);
+    } else if (apiData.status !== 200 && attendance.length === 0) {
+      SetCondition(false);
+    } else {
+      alert("No Data Selected");
+    }
+  };
+  return (
+    <MainBox>
+      {condition ? (
+        <>
+          <div>{apiData.message}</div>
+          <Table apiData={apiData} type="input" attendance={attendance} />
+          <Button buttonName="Submit" buttonChange={submitButtonChange} />
+        </>
+      ) : (
+        <>
           <Headerchip children={"Input Attendance"} />
           <Form
             text="Enter Class"
             type="text"
             placeholder="1-10"
-            handleChange={handleChange}
+            handleChange={handleInputDataChange}
           />
-          <Button buttonName="Search" buttonChange={buttonChange} />
-          <div>{apiData.message}</div>
-          <Table apiData={apiData}/>
-        </MainBox>
-      </div>
-      <div className="wavesdiv">
-        <Waves />
-      </div>
-    </div>
-  );}
-  else{
-    return (
-      <div className="App-header">
-        <div
-          className="inner-header flex"
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
-          }}
-        >
-          <Navbar />
-          <MainBox>
-            <div>{apiData.message}</div>
-            <Table apiData={apiData}/>
-            <Button buttonName="Submit" buttonChange={buttonChange} />
-          </MainBox>
-        </div>
-        <div className="wavesdiv">
-          <Waves />
-        </div>
-      </div>
-    );
-  }
+          <Button buttonName="Search" buttonChange={searchButtonChange} />
+        </>
+      )}
+    </MainBox>
+  );
 }

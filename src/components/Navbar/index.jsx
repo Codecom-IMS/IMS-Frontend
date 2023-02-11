@@ -1,17 +1,22 @@
 import React from "react";
-import {FaArrowLeft, FaHome } from "react-icons/fa";
+import { FaHome, FaSignOutAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import "./navbar.css";
 function Navbar() {
   return (
     <div className="Navbardiv">
-      <div class="Navbar">
-        <div class="Navbar__icon">
-          <FaArrowLeft />
+      <div className="Navbar">
+        <Link to="./LandingPage">
+        <div className="Navbar__icon" >
+          <FaSignOutAlt/>
         </div>
-        <text style={{color: "black"}}>Institute Monitoring System</text>
-        <div class="Navbar__icon">
+        </Link>
+        <p className="text">Institute Monitoring System</p>
+        <Link to="./">
+        <div className="Navbar__icon">
         <FaHome />
         </div>
+        </Link>
       </div>
       </div>
   );
