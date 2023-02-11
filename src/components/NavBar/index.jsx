@@ -4,12 +4,12 @@ import "./NavBar.css";
 function Navbar() {
   return (
     <div className="Navbardiv">
-      <div class="Navbar">
-        <div class="Navbar__icon">
+      <div className="Navbar">
+        <div className="Navbar__icon">
           <FaArrowLeft />
         </div>
-        <text style={{ color: "black" }}>Institute Monitoring System</text>
-        <div class="Navbar__icon">
+        <p>Institute Monitoring System</p>
+        <div className="Navbar__icon">
           <FaHome />
         </div>
       </div>

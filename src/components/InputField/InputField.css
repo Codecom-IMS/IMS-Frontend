@@ -18,7 +18,7 @@
     -0.2rem -0.2rem 0.5rem var(--white);
   background: none;
   font-family: inherit;
-  color: var(--greyDark);
+  color: var(--primary);
 }
 .form__input::placeholder {
   color: var(--greyLight-3);

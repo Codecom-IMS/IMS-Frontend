@@ -5,21 +5,24 @@ import "react-toastify/ReactToastify.min.css";
 import "./StudentForm.css";
 import { useState } from "react";
 import fetchApi from "../FetchApi";
+import {studentFieldsValidator} from "../Validator/validator";
 
 const StudentForm = ({
   apiUrl,
   callMethod,
   buttonTitle,
-  defaultStudentName,
-  defaultFatherName,
-  defaultFatherCNIC,
-  defaultDateOfBirth,
-  defaultBasicFee,
-  defaultOthers,
-  defaultStudentClass,
+  defaultStudentName = "",
+  defaultFatherName = "",
+  defaultFatherCNIC = "",
+  defaultDateOfBirth = "",
+  defaultBasicFee = "",
+  defaultOthers = "",
+  defaultStudentClass = "",
   defaultGender = "male",
   defaultRadioChecked = true,
+  readOnly,
 }) => {
+  let rollNumber;
   const [studentName, setStudentName] = useState(defaultStudentName);
   const onChnageStudentName = (newValue) => {
     setStudentName(newValue.target.value);
@@ -58,75 +61,93 @@ const StudentForm = ({
     });
   };
   const onSubmit = async () => {
-    const currentDate = new Date();
-    let day = currentDate.getDate();
-    let month = currentDate.getMonth();
-    let year = currentDate.getFullYear();
-    currentDate.getDate() <= 9
-      ? (day = `0${currentDate.getDate()}`)
-      : (day = `${currentDate.getDate()}`);
-    currentDate.getMonth() <= 9
-      ? (month = `0${currentDate.getMonth() + 1}`)
-      : (month = `${currentDate.getMonth() + 1}`);
-    let dateString = `${year}-${month}-${day}`;
-    let url;
-    apiUrl
-      ? (url = apiUrl)
-      : (url = "http://localhost:5000/api/admin/addStudent");
-    if (callMethod === "POST") {
-      try {
-        const studentData = {
-          roll_number: 15,
-          student_name: studentName,
-          father_name: fatherName,
-          father_cnic: fatherCNIC,
-          others: others,
-          date_of_admission: dateString,
-          date_of_birth: dateOfBirth,
-          class: studentClass,
-          basic_fee: basicFee,
-          gender: gender,
-          fee_status: "unpaid",
-          status: "active",
-        };
+    const valid = studentFieldsValidator(
+      studentName,
+      fatherName,
+      fatherCNIC,
+      basicFee,
+      others,
+      dateOfBirth,
+      studentClass
+    );
+    if (valid.status) {
+      const currentDate = new Date();
+      let day = currentDate.getDate();
+      let month = currentDate.getMonth();
+      let year = currentDate.getFullYear();
+      currentDate.getDate() <= 9
+        ? (day = `0${currentDate.getDate()}`)
+        : (day = `${currentDate.getDate()}`);
+      currentDate.getMonth() <= 9
+        ? (month = `0${currentDate.getMonth() + 1}`)
+        : (month = `${currentDate.getMonth() + 1}`);
+      let dateString = `${year}-${month}-${day}`;
+      let url;
+      apiUrl
+        ? (url = apiUrl)
+        : (url = "http://localhost:5000/api/admin/addStudent");
+      if (callMethod === "POST") {
+        try {
+          const students = await fetchApi(
+            "http://localhost:5000/api/admin/getStudents"
+          );
+          const totalStudents = await students.json();
+          rollNumber = parseInt(totalStudents.body.length) + 1;
+          const studentData = {
+            roll_number: rollNumber,
+            student_name: studentName,
+            father_name: fatherName,
+            father_cnic: fatherCNIC,
+            others: others,
+            date_of_admission: dateString,
+            date_of_birth: dateOfBirth,
+            class: studentClass,
+            basic_fee: basicFee,
+            gender: gender,
+            fee_status: "unpaid",
+            status: "active",
+          };
 
-        await fetchApi(url, callMethod, studentData);
-        toastNotification("Student Added Successfully", "success");
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
-      } catch (error) {
-        toastNotification("Error Occured", "error");
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
+          await fetchApi(url, callMethod, studentData);
+          toastNotification(`Student Added Successfully Roll Number = ${rollNumber}`, "success");
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
+        } catch (error) {
+          toastNotification("Error Occured", "error");
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
+        }
+      } else {
+        try {
+          const studentData = {
+            student_name: studentName,
+            father_name: fatherName,
+            father_cnic: fatherCNIC,
+            others: others,
+            date_of_admission: dateString,
+            date_of_birth: dateOfBirth,
+            class: studentClass,
+            basic_fee: basicFee,
+            gender: gender,
+            fee_status: "unpaid",
+            status: "active",
+          };
+          await fetchApi(url, callMethod, studentData);
+          toastNotification("Student Edited Successfully");
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
+        } catch (error) {
+          toastNotification("Error Occured", "error");
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
+        }
       }
     } else {
-      try {
-        const studentData = {
-          student_name: studentName,
-          father_name: fatherName,
-          father_cnic: fatherCNIC,
-          others: others,
-          date_of_admission: dateString,
-          date_of_birth: dateOfBirth,
-          class: studentClass,
-          basic_fee: basicFee,
-          gender: gender,
-          fee_status: "unpaid",
-          status: "active",
-        };
-        await fetchApi(url, callMethod, studentData);
-        toastNotification("Student Edited Successfully");
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
-      } catch (error) {
-        toastNotification("Error Occured", "error");
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
-      }
+      toastNotification(valid.message, valid.messageType);
     }
   };
   return (
@@ -138,7 +159,7 @@ const StudentForm = ({
           placeholder={"Enter Student Name"}
           value={studentName}
           onChangeFunction={onChnageStudentName}
-          requiredField={true}
+          readOnly={readOnly}
         />
         <InputField
           inputType={"text"}
@@ -146,7 +167,7 @@ const StudentForm = ({
           placeholder={"Enter Father Name"}
           value={fatherName}
           onChangeFunction={onChangeFatherName}
-          requiredField={true}
+          readOnly={readOnly}
         />
       </div>
       <div className="fields-div">
@@ -157,7 +178,7 @@ const StudentForm = ({
           placeholder={"Enter CNIC"}
           value={fatherCNIC}
           onChangeFunction={onChangeFatherCNIC}
-          requiredField={true}
+          readOnly={readOnly}
         />
         <InputField
           inputType={"number"}
@@ -166,7 +187,7 @@ const StudentForm = ({
           placeholder={"Enter Fee"}
           value={basicFee}
           onChangeFunction={onChangeBasicFee}
-          requiredField={true}
+          readOnly={readOnly}
         />
       </div>
       <div className="fields-div">
@@ -176,7 +197,7 @@ const StudentForm = ({
           placeholder={"Other"}
           value={others}
           onChangeFunction={onChangeOthers}
-          requiredField={false}
+          readOnly={readOnly}
         />
         <InputField
           inputType={"date"}
@@ -184,7 +205,7 @@ const StudentForm = ({
           placeholder={"yyyy-mm-dd"}
           value={dateOfBirth}
           onChangeFunction={onChangeDateOfBirth}
-          requiredField={true}
+          readOnly={readOnly}
         />
       </div>
       <div className="radio-div">
@@ -194,7 +215,7 @@ const StudentForm = ({
           placeholder={"Class"}
           value={studentClass}
           onChangeFunction={onChangeStudentClass}
-          requiredField={true}
+          readOnly={readOnly}
         />
         <div className="radio-container">
           <RadioButton

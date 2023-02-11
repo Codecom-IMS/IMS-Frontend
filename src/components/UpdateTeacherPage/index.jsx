@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import HeaderChip from "../ModuleTitle";
-import { TeacherForm, InputField, BlueButton } from "../index";
+import { TeacherForm, InputField, BlueButton, Toast } from "../index";
 import MainBox from "../UserManagementMainDiv";
 import fetchApi from "../FetchApi";
 import "./UpdateTeacherPage.css";
+import { toast } from "react-toastify";
+import "react-toastify/ReactToastify.min.css";
+import { isDataFound, searchFieldValidator } from "../Validator/validator";
 const UpadteTeacherPage = () => {
   const [teacherId, setTeacherId] = useState("");
   const onChangeTeacherId = (newValue) => {
@@ -12,15 +15,30 @@ const UpadteTeacherPage = () => {
   const [teacherData, setTeacherData] = useState("");
   const [teacherFound, setTeacherFound] = useState(false);
   const api = `http://localhost:5000/api/admin/updateTeacher/${teacherId}`;
+  const toastNotification = (message, messageType) => {
+    toast(message, {
+      type: messageType,
+    });
+  };
   const onSubmit = async () => {
-    try {
-      const url = `http://localhost:5000/api/admin/getTeachers?id=${teacherId}`;
-      const data = await fetchApi(url, "GET");
-      const teacherData = await data.json();
-      setTeacherData(teacherData);
-      data.body ? setTeacherFound(true) : setTeacherFound(false);
-    } catch (error) {
-      console.log(error);
+    const isIdValid = searchFieldValidator(teacherId);
+    if (isIdValid.status) {
+      try {
+        const url = `http://localhost:5000/api/admin/getTeachers?id=${teacherId}`;
+        const data = await fetchApi(url, "GET");
+        const teacherData = await data.json();
+        const isRecordFound = isDataFound(teacherData);
+        if (isRecordFound.status) {
+          setTeacherData(teacherData);
+          data.body ? setTeacherFound(true) : setTeacherFound(false);
+        } else {
+          toastNotification(isRecordFound.message, isRecordFound.messageType);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      toastNotification(isIdValid.message, isIdValid.messageType);
     }
   };
   return (
@@ -34,6 +52,7 @@ const UpadteTeacherPage = () => {
             defaultTeacherName={teacherData?.body.name}
             defaultTeacherEmail={teacherData?.body.email}
             defaultTeacherPassword={teacherData?.body.password}
+            readOnly={false}
           />
         ) : (
           <div>Teacher not exists</div>
@@ -52,6 +71,7 @@ const UpadteTeacherPage = () => {
           <BlueButton buttonText={"Search"} onSubmitHandler={onSubmit} />
         </>
       )}
+      <Toast />
     </MainBox>
   );
 };

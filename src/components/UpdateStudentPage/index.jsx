@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import fetchApi from "../FetchApi";
+import { toast } from "react-toastify";
+import "react-toastify/ReactToastify.min.css";
 import {
   BlueButton,
   HeaderChip,
   InputField,
   MainBox,
   StudentForm,
+  Toast,
 } from "../index";
+import { isDataFound, searchFieldValidator } from "../Validator/validator";
 import "./UpdateStudentPage.css";
 
 const UpdateStudentPage = () => {
@@ -18,18 +22,36 @@ const UpdateStudentPage = () => {
   const [student, setStudent] = useState("");
   const updateApiUrl = `http://localhost:5000/api/admin/updateStudent/${rollNumber}`;
   const [userGenderRadioChecked, setUserGenderRadioChecked] = useState(true);
+  const toastNotification = (message, messageType) => {
+    toast(message, {
+      type: messageType,
+    });
+  };
   const onSubmit = async () => {
-    try {
-      const url = `http://localhost:5000/api/admin/getStudents?roll_number=${rollNumber}`;
-      const data = await fetchApi(url, "GET");
-      const studentData = await data.json();
-      setStudent(studentData);
-      data.body ? setStudentFound(true) : setStudentFound(false);
-      studentData?.body.gender === "male"
-        ? setUserGenderRadioChecked(true)
-        : setUserGenderRadioChecked(false);
-    } catch (error) {
-      console.log(error);
+    const isRollNumberValid = searchFieldValidator(rollNumber);
+    if (isRollNumberValid.status) {
+      try {
+        const url = `http://localhost:5000/api/admin/getStudents?roll_number=${rollNumber}`;
+        const data = await fetchApi(url, "GET");
+        const studentData = await data.json();
+        const isRecordFound = isDataFound(studentData);
+        if (isRecordFound.status) {
+          setStudent(studentData);
+          data.body ? setStudentFound(true) : setStudentFound(false);
+          studentData?.body.gender === "male"
+            ? setUserGenderRadioChecked(true)
+            : setUserGenderRadioChecked(false);
+        } else {
+          toastNotification(isRecordFound.message, isRecordFound.messageType);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      toastNotification(
+        isRollNumberValid.message,
+        isRollNumberValid.messageType
+      );
     }
   };
   return (
@@ -63,8 +85,10 @@ const UpdateStudentPage = () => {
           defaultRadioChecked={userGenderRadioChecked}
           defaultStudentClass={student?.body.class}
           studentFound={studentFound}
+          readOnly={false}
         />
       )}
+      <Toast />
     </MainBox>
   );
 };

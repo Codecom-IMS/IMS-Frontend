@@ -4,13 +4,15 @@ import { BlueButton, InputField, Toast } from "../index";
 import "./TeacherForm.css";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
+import { teacherFieldValidator } from "../Validator/validator";
 
 const TeacherForm = ({
   apiUrl,
   callMethod,
-  defaultTeacherName,
-  defaultTeacherEmail,
-  defaultTeacherPassword,
+  defaultTeacherName = "",
+  defaultTeacherEmail = "",
+  defaultTeacherPassword = "",
+  readOnly,
 }) => {
   const [teacherName, setTeacherName] = useState(defaultTeacherName);
   const onChangeTeacherName = (newValue) => {
@@ -34,18 +36,32 @@ const TeacherForm = ({
   const onSubmit = async () => {
     const url = apiUrl ? apiUrl : "http://localhost:5000/api/admin/addTeacher";
     if (callMethod === "POST") {
-      try {
-        const teacherData = {
-          id: 13,
-          name: teacherName,
-          email: teacherEmail,
-          password: teacherPassword,
-          status: "serving",
-        };
-        await fetchApi(url, callMethod, teacherData);
-        toastNotification("Teacher Added", "success");
-      } catch (error) {
-        toastNotification("Error Occure", "error");
+      const areFiledsValid = teacherFieldValidator(
+        teacherName,
+        teacherEmail,
+        teacherPassword
+      );
+      if (areFiledsValid.status) {
+        try {
+          const teachers = await fetchApi(
+            "http://localhost:5000/api/admin/getTeachers"
+          );
+          const totalTeachers = await teachers.json();
+          const teacherId = parseInt(totalTeachers.body.length) + 1;
+          const teacherData = {
+            id: teacherId,
+            name: teacherName,
+            email: teacherEmail,
+            password: teacherPassword,
+            status: "serving",
+          };
+          await fetchApi(url, callMethod, teacherData);
+          toastNotification("Teacher Added", "success");
+        } catch (error) {
+          toastNotification("Error Occure", "error");
+        }
+      } else {
+        toastNotification(areFiledsValid.message, areFiledsValid.messageType);
       }
     } else {
       try {
@@ -70,6 +86,7 @@ const TeacherForm = ({
           value={teacherName}
           onChangeFunction={onChangeTeacherName}
           placeholder={"Enter Name"}
+          readOnly={readOnly}
         />
         <InputField
           inputType={"text"}
@@ -77,6 +94,7 @@ const TeacherForm = ({
           value={teacherEmail}
           onChangeFunction={onChangeTeacherEmail}
           placeholder={"Email"}
+          readOnly={readOnly}
         />
       </div>
       <div className="add-teacher-fields">
@@ -86,6 +104,7 @@ const TeacherForm = ({
           value={teacherPassword}
           onChangeFunction={onChangeTeacherPassword}
           placeholder={"Password"}
+          readOnly={readOnly}
         />
       </div>
       <BlueButton buttonText={"Submit"} onSubmitHandler={onSubmit} />

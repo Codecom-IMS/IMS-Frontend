@@ -2,8 +2,8 @@
   --primary-light: #8abdff;
   --primary: #6d5dfc;
   --primary-dark: #5b0eeb;
-  --white: #FFFFFF;
-  --greyLight-1: #E4EBF5;
+  --white: #ffffff;
+  --greyLight-1: #e4ebf5;
   --greyLight-2: #c8d0e7;
   --greyLight-3: #bec8e4;
   --greyDark: #9baacf;
@@ -32,8 +32,6 @@
     rgba(0, 172, 193, 1) 100%
   );
   color: white;
-  justify-content: center;
-  align-items: center;
 }
 
 @keyframes App-logo-spin {
@@ -44,23 +42,17 @@
     transform: rotate(360deg);
   }
 }
-label{
-  color: var(--primary-dark);
+label {
+  color: var(--greyDark);
   padding: 0.4rem;
-}
-.bar{
-  height:100%;
-  width:100%;
-  background: white;
-  position: sticky;
-  z-index:100;
+  font-size: 1.2rem;
 }
 @media screen and (max-width: 650px) {
   .card-container {
     flex-direction: column;
   }
 }
-.card-container{
+.card-container {
   display: grid;
   grid-template-columns: 17.6rem 19rem 20.4rem;
   grid-template-rows: repeat(autofit, min-content);
@@ -70,12 +62,11 @@ label{
   background: var(--greyLight-1);
   display: flex;
 }
-.radio-container{
+.radio-container {
   display: flex;
   flex-direction: row;
 }
 .inner-header {
-
   height: fit-contents;
   width: 100%;
   margin: 0;
@@ -89,6 +80,6 @@ label{
   text-align: center;
   flex-direction: column;
 }
-.wavesDiv{
- height: auto;
+.wavesDiv {
+  height: auto;
 }
