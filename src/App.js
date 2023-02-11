@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import InputAttendancePage from "./components/inputAttendancePage";
 import EditAttendancePage from "./components/editAttendancePage";
 import StartPoint from "./components/StartPoint";
+import AttendanceManagementPage from "./components/attendanceManagementPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -12,12 +13,16 @@ function App() {
       children: [
         {
           path: "/",
-          element: <InputAttendancePage />,
+          element: <AttendanceManagementPage />,
         },
         {
           path: "/editAttendance",
           element: <EditAttendancePage/>,
         },
+        {
+          path: "/inputAttendance",
+          element: <InputAttendancePage/>,
+        }
       ],
     },
   ]);

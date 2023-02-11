@@ -1,11 +1,11 @@
 import React from "react";
 import "./button.css";
 
-function Button({buttonName, buttonChange}) {
+function Button({ buttonName, buttonChange }) {
   return (
-      <button className="btn btn__primary" onClick={buttonChange}>
-        {buttonName}
-      </button>
+    <button className="btn btn__primary" onClick={buttonChange}>
+      {buttonName}
+    </button>
   );
 }
 

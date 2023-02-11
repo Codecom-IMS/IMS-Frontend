@@ -34,5 +34,5 @@
 
 .fl-table thead th {
   color: #ffffff;
-  background: rgba(84, 58, 183, 1);
+  background: var(--primary);
 }

@@ -8,8 +8,12 @@ export default async function FetchApi(endPoint, method, data) {
       const result = await response.json();
       if (result.status === 200) {
         return result;
-      } else {
-        return  {message : "Data Not Found"} ;
+      } else if(result.status === 409)
+      {
+        return { status: result.status};
+      }
+       else {
+        return {message: "Data Not Found" };
       }
     } else {
       const response = await fetch(`http://localhost:5050/api/${endPoint}`, {

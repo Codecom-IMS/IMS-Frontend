@@ -1,24 +1,23 @@
 import React from "react";
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import "./navbar.css";
 function Navbar() {
   return (
     <div className="Navbardiv">
       <div className="Navbar">
-        <Link to="./LandingPage">
-        <div className="Navbar__icon" >
-          <FaSignOutAlt/>
-        </div>
-        </Link>
+        <a href="http://localhost:3000/landingPage">
+          <div className="Navbar__icon">
+            <FaSignOutAlt />
+          </div>
+        </a>
         <p className="text">Institute Monitoring System</p>
-        <Link to="./">
-        <div className="Navbar__icon">
-        <FaHome />
-        </div>
-        </Link>
+        <a href="http://localhost:3000/">
+          <div className="Navbar__icon">
+            <FaHome />
+          </div>
+        </a>
       </div>
-      </div>
+    </div>
   );
 }
 

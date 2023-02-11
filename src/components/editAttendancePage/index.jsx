@@ -4,13 +4,22 @@ import FetchApi from "../FetchApi";
 import Form from "../Form";
 import HeaderChip from "../HeaderChip";
 import MainBox from "../MainDiv";
+import Navbar from "../Navbar";
 import Table from "../Table";
+import { toast } from "react-toastify";
+import "react-toastify/ReactToastify.min.css";
+import Toast from "../Toast";
 export default function InputAttendance() {
   const [inputData, SetInputData] = useState("");
   const [inputDate, SetInputDate] = useState("");
   const [condition, SetCondition] = useState(false);
   const [apiData, SetApiData] = useState({});
   let attendance = [];
+  const toastNotifications = (message, messageType) => {
+    toast(message, {
+      type: messageType,
+    });
+  };
   const handleInputDataChange = (event) => {
     SetInputData(event.target.value);
   };
@@ -23,10 +32,9 @@ export default function InputAttendance() {
     const result = await FetchApi(endPoint, method);
     SetApiData(result);
     if (result.status === 200) {
-      alert("Data Found");
       SetCondition(true);
     } else {
-      alert("No Data Found! Invalid Input");
+      toastNotifications("No Data Found! Invalid Input","error")
     }
   };
   const submitButtonChange = async () => {
@@ -40,17 +48,19 @@ export default function InputAttendance() {
       };
       const result = await FetchApi(endPoint, method, data);
       if (result.status === 200) {
-        alert("Operation Succesfull");
+        toastNotifications("Attendance Updated","success")
       }
       SetInputData("");
       SetCondition(false);
     } else if (apiData.status !== 200 && attendance.length === 0) {
       SetCondition(false);
     } else {
-      alert("No Data Selected");
+      toastNotifications("No Data Selected","error")
     }
   };
-    return (
+  return (
+    <>
+      <Navbar />
       <MainBox>
         {condition ? (
           <>
@@ -59,10 +69,10 @@ export default function InputAttendance() {
           </>
         ) : (
           <>
-            <HeaderChip children={"Edit Attendance"} />
+            <HeaderChip HeaderText={"Edit Attendance"} />
             <Form
               text="Enter Class"
-              type="text"
+              type="classes"
               placeholder="1-10"
               handleChange={handleInputDataChange}
             />
@@ -75,7 +85,8 @@ export default function InputAttendance() {
             <Button buttonName="Search" buttonChange={searchButtonChange} />
           </>
         )}
+        <Toast/>
       </MainBox>
-    );
-  
+    </>
+  );
 }
