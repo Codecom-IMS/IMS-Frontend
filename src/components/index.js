@@ -1,3 +1,13 @@
+export { default as DateField } from "./DateField";
+export { default as FetchData } from "./FetchData";
+export { default as Form } from "./InputForm";
+export { default as MainBox } from "./MainBox";
+export { default as ReportPage } from "./ReportsPage";
+export { default as ReportsPageMain } from "./ReportsPageMain";
+export { default as ReportsRadioButton}  from "./ReportsRadioButton";
+export { default as AttendanceTable } from "./ReportsTable/attendanceReportTable";
+export { default as FeeTable } from "./ReportsTable/feeReportTable";
+export { default as StartPoint } from "./StartPoint";
 export { default as Waves } from "./Waves";
 export { default as MainBox } from "./UserManagementMainDiv";
 export { default as ModuleTitle } from "./ModuleTitle";

@@ -42,3 +42,19 @@ html {
   flex-direction: column;
   padding: 40px;
 }
+.H1 {
+  color: var(--greyDark);
+  font-family: "Lato", sans-serif;
+}
+.divcomponents {
+  min-width: 120vh;
+  height: 50vh;
+  display: grid;
+  grid-column-gap: 5rem;
+  grid-row-gap: 2.5rem;
+  justify-content: center;
+  align-items: center;
+  background: var(--white);
+  display: flex;
+  flex-direction: row;
+}
