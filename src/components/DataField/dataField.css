@@ -9,13 +9,6 @@
   --greyDark: #9baacf;
 }
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-}
 .field_div {
   display: flex;
   flex-direction: row;
@@ -33,7 +26,7 @@
   padding: 0 2rem;
   align-items: center;
   margin: 0 1rem;
-  color: rgb(84, 88, 110);
+  color: var(--greyDark);
 }
 
 .span__head {

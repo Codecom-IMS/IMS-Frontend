@@ -1,14 +1,11 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
-
 const NotifyToast = () => {
   return (
     <ToastContainer
-      position="top-right"
+      position="top-left"
       autoClose={5000}
       hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
       rtl={false}
       pauseOnFocusLoss
       draggable

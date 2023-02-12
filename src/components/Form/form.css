@@ -9,13 +9,6 @@
   --greyDark: #9baacf;
 }
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-}
 .form {
   grid-column: 3/4;
   grid-row: 3/4;

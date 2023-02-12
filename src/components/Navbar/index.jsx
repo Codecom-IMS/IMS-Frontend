@@ -5,16 +5,16 @@ import "./navbar.css";
 function Navbar() {
   return (
     <div>
-      <div class="Navbar">
-        <div class="Navbar__icon">
-          <Link to="./o" style={{decoration :"none"}}>
+      <div className="Navbar">
+        <div className="Navbar__icon">
+          <Link to="./o" style={{ decoration: "none" }}>
             {" "}
             <FaArrowLeft />{" "}
           </Link>
         </div>
         <p>Institute Monitoring System</p>
-        <div class="Navbar__icon">
-          <Link to="./o" style={{decoration :"none"}}>
+        <div className="Navbar__icon">
+          <Link to="./o" style={{ decoration: "none" }}>
             <FaHome />
           </Link>
         </div>

@@ -1,10 +1,10 @@
 import React from "react";
 import "./headerChip.css";
-function HeaderChip() {
+function HeaderChip({ HeaderText }) {
   return (
     <div>
       <div className="chip">
-        <h1>Fee module</h1>
+        <h1>{HeaderText}</h1>
       </div>
     </div>
   );

@@ -6,14 +6,14 @@ import {
   Form,
   Button,
   Waves,
-  Navbar,
+  NavBar,
   AddFeeDiv,
   Field,
-  NotifyToast,
+  Toast,
 } from "../index";
+import { dataValidator, rollNumberValidator } from "../FeeValidator/index";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
-
 function FeeManagement() {
   const [rollNumberInputData, setRollNumberInputData] = useState("");
   const [apiData, setapiData] = useState({
@@ -26,33 +26,37 @@ function FeeManagement() {
   const feeHandleChange = (newData) => {
     setfeeInputData(newData);
   };
-  console.log(rollNumberInputData);
   const searchStudent = async () => {
-    const method = "GET";
-    const getStudentDetails = await fetch(
-      `http://localhost:5000/api/admin/feeDetails?roll_number=${rollNumberInputData}`,
-      {
-        method,
-        headers: { "Content-type": "Application/json" },
+    const isRollNumberValid = rollNumberValidator(rollNumberInputData);
+    if (isRollNumberValid.status) {
+      const method = "GET";
+      const getStudentDetails = await fetch(
+        `http://localhost:5000/api/admin/feeDetails?roll_number=${rollNumberInputData}`,
+        {
+          method,
+          headers: { "Content-type": "Application/json" },
+        }
+      );
+      const result = await getStudentDetails.json();
+
+      const isRecordFound = dataValidator(result);
+      if (isRecordFound.status) {
+        setapiData(result);
+      } else {
+        toast(isRecordFound.message, isRecordFound.messageType);
       }
-    );
-    const result = await getStudentDetails.json();
-    console.log(result);
-    setapiData(result);
+    } else {
+      toast(isRollNumberValid.message, isRollNumberValid.messageType);
+    }
   };
   const feeData = {
     current_paid_fee: feeInputData,
     roll_number: rollNumberInputData,
   };
-  const addNotification = () => {
-    toast("Fee paid successfully.", {
-      type: "success",
-    });
-  };
   const addFee = async () => {
     const method = "POST";
     await fetch(
-      `http://localhost:5000/api/admin/addFee`,
+      `http://localhost:5000/api/admin/feeDetails`,
       {
         method,
         headers: { "Content-type": "Application/json" },
@@ -60,7 +64,10 @@ function FeeManagement() {
       },
       setapiData({ studentDetails: [] })
     );
-    addNotification();
+    setRollNumberInputData("");
+    toast("Fee paid successfully.", {
+      type: "info",
+    });
   };
 
   let total =
@@ -70,11 +77,11 @@ function FeeManagement() {
 
   return (
     <div className="App-header">
-      <Navbar />
+      <NavBar />
       <div className="inner-header flex">
         {apiData?.studentDetails.length === 0 ? (
           <MainBox>
-            <HeaderChip />
+            <HeaderChip HeaderText={"Fee module"} />
             <Form
               text="Enter Roll Number"
               type="number"
@@ -85,29 +92,28 @@ function FeeManagement() {
           </MainBox>
         ) : (
           <AddFeeDiv>
-            <HeaderChip />
-
+            <HeaderChip HeaderText={"Fee module"} />
             <div className="feediv1">
               <Field
                 text="Student Name :"
                 data={apiData.studentDetails[0]?.student_name}
               />
               <Field
-                text=" basic fee :"
+                text=" Basic fee :"
                 data={apiData.studentDetails[0]?.basic_fee}
               />
               <Field
-                text="others : "
+                text=" Others : "
                 data={apiData.studentDetails[0]?.others}
               />
             </div>
             <div className="feediv2">
               <Field
-                text=" roll number :"
+                text=" Roll number :"
                 data={apiData.studentDetails[0]?.roll_number}
               />
               <Field
-                text=" previous arrears :"
+                text=" Previous Arrears :"
                 data={
                   apiData?.PrevArrears?.arrears === undefined
                     ? 0
@@ -130,7 +136,7 @@ function FeeManagement() {
       <div className="wavesdiv">
         <Waves />
       </div>
-      <NotifyToast />
+      <Toast />
     </div>
   );
 }
