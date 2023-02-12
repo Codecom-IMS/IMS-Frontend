@@ -1,8 +1,7 @@
 import React from "react";
-import RadioButton from "../RadioButton";
-import "./table.css";
-export default function Table({ apiData, type, attendance }) {
-  let counter = 1;
+import RadioButton from "../AttendanceRadioButton";
+import "./AttendanceTable.css";
+export default function AttendanceTable({ apiData, type, attendance }) {
   let tableData = [];
   let tableRow = [];
   for (let i = 0; i < apiData.body.length; i++) {
@@ -10,7 +9,7 @@ export default function Table({ apiData, type, attendance }) {
       tableData[j] = <td>{apiData.body[i][j]}</td>;
     }
     tableRow[i] = (
-      <tr>
+      <tr key={i}>
         {tableData[0]}
         {tableData[1]}
         {tableData[2]}
@@ -25,40 +24,36 @@ export default function Table({ apiData, type, attendance }) {
           <RadioButton
             label="P"
             value="P"
-            name={`radio-${counter}`}
+            name={`radio-${i}`}
             className="radio__1"
-            id={`present-${counter}`}
+            id={`present-${i}`}
             onChange={(events) => {
               attendance[i] = events.target.value;
-              console.log(attendance, counter);
             }}
           />
           <RadioButton
             label="A"
             value="A"
             className="radio__1"
-            name={`radio-${counter}`}
-            id={`absent-${counter}`}
+            name={`radio-${i}`}
+            id={`absent-${i}`}
             onChange={(events) => {
               attendance[i] = events.target.value;
-              console.log(attendance, counter);
             }}
           />
           <RadioButton
             label="L"
             value="L"
             className="radio__1"
-            name={`radio-${counter}`}
-            id={`leave-${counter}`}
+            name={`radio-${i}`}
+            id={`leave-${i}`}
             onChange={(events) => {
               attendance[i] = events.target.value;
-              console.log(attendance, counter);
             }}
           />
         </div>
       </tr>
     );
-    counter++;
   }
   return (
     <div className="table-wrapper">

@@ -1,12 +1,22 @@
-import "./form.css";
+import "./AttendanceForm.css";
 function Form({ text, type, placeholder, handleChange }) {
   const options = [
-    <option className="dropDownContent" key="PG" value="PG">PG</option>,
-    <option className="dropDownContent" key="Nursery" value="Nursery">Nursery</option>,
-    <option className="dropDownContent" key="KG" value="KG">KG</option>,
+    <option className="dropDownContent" key="PG" value="pg">
+      PG
+    </option>,
+    <option className="dropDownContent" key="Nursery" value="nursery">
+      Nursery
+    </option>,
+    <option className="dropDownContent" key="KG" value="kg">
+      KG
+    </option>,
   ];
   for (let i = 1; i < 11; i++) {
-    options[i+2] = <option className="dropDownContent" key={i} value={`${i}`}>{i}</option>;
+    options[i + 2] = (
+      <option className="dropDownContent" key={i} value={`${i}`}>
+        {i}
+      </option>
+    );
   }
   return (
     <div>

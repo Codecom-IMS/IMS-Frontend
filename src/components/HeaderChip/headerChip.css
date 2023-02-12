@@ -6,9 +6,6 @@
   box-sizing: inherit;
 }
 .chip {
-  grid-column: 2/3;
-  grid-row: 3/4;
-  justify-self: center;
   width: -moz-fit-content;
   width: fit-content;
   height: fit-content;
@@ -20,7 +17,7 @@
   padding: 5px 3px 5px 3px;
 }
 .chip h1 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin: 0.5rem;
   color: var(--greyDark);
 }

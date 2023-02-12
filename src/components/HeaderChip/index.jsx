@@ -1,5 +1,5 @@
 import React from "react";
-import "./headerChip.css";
+import "./HeaderChip.css";
 function HeaderChip({ HeaderText }) {
   return (
     <div>

@@ -1,9 +1,9 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import InputAttendancePage from "./components/inputAttendancePage";
-import EditAttendancePage from "./components/editAttendancePage";
+import InputAttendancePage from "./components/InputAttendancePage";
+import EditAttendancePage from "./components/EditAttendancePage";
 import StartPoint from "./components/StartPoint";
-import AttendanceManagementPage from "./components/attendanceManagementPage";
+import AttendanceManagementPage from "./components/AttendanceManagementPage";
 
 function App() {
   const router = createBrowserRouter([

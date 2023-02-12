@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import MainBox from "../MainDiv";
-import Form from "../Form";
+import MainBox from "../MainBox";
+import Form from "../InputForm";
 import Headerchip from "../HeaderChip";
 import Button from "../Button";
-import FetchApi from "../FetchApi";
-import Table from "../Table";
-import Navbar from "../Navbar";
+import AttendanceFetchApi from "../AttendanceFetchApi";
+import Navbar from "../NavBar";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
 import Toast from "../Toast";
 import DateFormat from "../../services/utils/Dateformat";
-export default function InputAttendance() {
-  const [inputData, SetInputData] = useState("");
+import AttendanceTable from "../AttendanceTable";
+export default function InputAttendancePage() {
+  const [inputData, SetInputData] = useState("PG");
   const [apiData, SetApiData] = useState({});
   const [condition, SetCondition] = useState(false);
   let attendance = [];
@@ -27,13 +27,13 @@ export default function InputAttendance() {
     const date = DateFormat();
     const endPoint = `teacher/attendancePage/inputAttendance?class=${inputData}&date=${date}`;
     const method = "GET";
-    const result = await FetchApi(endPoint, method);
+    const result = await AttendanceFetchApi(endPoint, method);
     SetApiData(result.status);
     if (result.status === 409) {
       toast("Attendance Already Exists!", "info");
     } else if (result.status === 200) {
       SetCondition(true);
-      SetApiData(result)
+      SetApiData(result);
     } else {
       toastNotifications("No Data Found! Invalid Input", "error");
     }
@@ -43,7 +43,7 @@ export default function InputAttendance() {
       const endPoint = `teacher/attendancePage/inputAttendance?className=${inputData}`;
       const method = "POST";
       const data = { class: inputData, attendance: attendance };
-      const result = await FetchApi(endPoint, method, data);
+      const result = await AttendanceFetchApi(endPoint, method, data);
       if (result.status === 200) {
         toastNotifications("Attendance Added", "success");
       }
@@ -62,7 +62,11 @@ export default function InputAttendance() {
         {condition ? (
           <>
             <div>{apiData.message}</div>
-            <Table apiData={apiData} type="input" attendance={attendance} />
+            <AttendanceTable
+              apiData={apiData}
+              type="input"
+              attendance={attendance}
+            />
             <Button buttonName="Submit" buttonChange={submitButtonChange} />
           </>
         ) : (

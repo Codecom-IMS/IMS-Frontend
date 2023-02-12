@@ -2,9 +2,9 @@ import React from "react";
 import Card from "../Card";
 import inputPicture from "../../assets/InputPicture.png";
 import editPicture from "../../assets/EditPicture.png";
-import MainBox from "../MainDiv";
+import MainBox from "../MainBox";
 import HeaderChip from "../HeaderChip";
-import Navbar from "../Navbar";
+import Navbar from "../NavBar";
 export default function AttendanceManagementPage() {
   return (
     <>
