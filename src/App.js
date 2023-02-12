@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import InputAttendancePage from "./components/InputAttendancePage";
+import EditAttendancePage from "./components/EditAttendancePage";
+import StartPoint from "./components/StartPoint";
+import AttendanceManagementPage from "./components/AttendanceManagementPage";
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <StartPoint />,
+      children: [
+        {
+          path: "/",
+          element: <AttendanceManagementPage />,
+        },
+        {
+          path: "/editAttendance",
+          element: <EditAttendancePage/>,
+        },
+        {
+          path: "/inputAttendance",
+          element: <InputAttendancePage/>,
+        }
+      ],
+    },
+  ]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <RouterProvider router={router} />
     </div>
   );
 }
