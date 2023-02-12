@@ -27,10 +27,8 @@ export default function ReportPage({ endPoint1, endPoint2, children }) {
   };
   const [grade, setGrade] = useState("pg");
   const changeHandler3 = async (inputData) => {
-    console.log(inputData);
     setGrade(inputData);
   };
-  console.log(grade);
   const [startDate, setStartDate] = useState("");
   const changeHandler1 = (inputData) => {
     setStartDate(inputData);
@@ -77,8 +75,9 @@ export default function ReportPage({ endPoint1, endPoint2, children }) {
       } else if (result.status === 400) {
         toast("Invalid Input");
       }
-    }else{
-    toast("Empty Field")}
+    } else {
+      toast("Empty Field");
+    }
   };
   return (
     <div className="App-header">
