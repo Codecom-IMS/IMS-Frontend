@@ -1,18 +1,15 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
-const NotifyToast = () => {
+
+const Toast = () => {
   return (
     <ToastContainer
-      position="top-left"
-      autoClose={5000}
-      hideProgressBar={false}
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
+      position="bottom-center"
+      autoClose={3000}
+      hideProgressBar={true}
       theme="light"
     />
   );
 };
 
-export default NotifyToast;
+export default Toast;
