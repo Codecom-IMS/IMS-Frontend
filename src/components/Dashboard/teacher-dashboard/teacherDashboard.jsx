@@ -12,7 +12,7 @@ import Navbar from "../../Navbar";
 const TeacherDashboard = () => {
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <MainBox>
         <HeaderChip headerText={"Teacher Dashboard"} />
 

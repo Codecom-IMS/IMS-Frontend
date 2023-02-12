@@ -6,48 +6,50 @@ import HeaderChip from "../../HeaderChip";
 import InputField from "../../InputField/index";
 import MainBox from "../../MainBox";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/ReactToastify.min.css";
 import "./style.css";
+import Toast from "../../toast/toast";
 
 const AdminLogin = ({ Admin }) => {
   const Navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
-  // const location = useLocation();
 
+  const toastNotification = (message, messageType) => {
+    toast(message, {
+      type: messageType,
+    });
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     try {
       const response = await axios.post(
         `http://localhost:5000/api/admin/login`,
         { email, password }
       );
 
-      console.log("response is", response);
       if (response) {
-        console.log("if condition working");
         const jwt = response.data.data.token;
-        Cookies.set("Jwt", jwt,
-        {
-        
-        expires: 1, // expires in 7 days
-        secure: true, // only send cookie over HTTPS
-        sameSite: "strict", // prevent cross-site scripting
-        // httpOnly: true // only accessible on the server-side
-        }
-        
-        );
+        Cookies.set("Jwt", jwt, {
+          expires: 1,
+          secure: true,
+          sameSite: "strict",
+        });
+        toastNotification("Token Generated", "success");
         console.log("Jwt value: ", Cookies.get("Jwt"));
         Navigate("/admin-dashboard");
-        // window.location.href = "/admin-dashboard";
-        console.log("Jwt value: ", Cookies.get("Jwt"));
       } else {
-        console.log("if not working");
+        console.log("token not found");
       }
 
       if (email === "" || password === "") {
         setError(true);
       } else {
+        // toastNotification("Successfully Login", "info");
+
         setError(false);
       }
     } catch (error) {
@@ -96,6 +98,7 @@ const AdminLogin = ({ Admin }) => {
           </form>
         </div>
       </MainBox>
+      <Toast />
     </>
   );
 };

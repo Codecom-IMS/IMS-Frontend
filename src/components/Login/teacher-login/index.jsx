@@ -30,8 +30,6 @@ const TeacherLogin = ({ Teacher }) => {
         Cookies.set("Teacher Token", jwt);
         console.log("Jwt Teacher Token: ", Cookies.get("Teacher Token"));
         Navigate("/teacher-dashboard");
-        // window.location.href = "/admin-dashboard";
-        // console.log("Jwt value: ", Cookies.get("Jwt"));
       } else {
         console.log("if not working");
       }

@@ -22,8 +22,7 @@
   padding-top: 20px;
   /* background-color: green; */
 }
-.gap{
-
+.gap {
   margin-top: 20px;
 }
 .form__input {
@@ -40,7 +39,6 @@
   color: var(--greyDark);
   padding-top: 5px;
   display: flex;
-  
 }
 .form__input::placeholder {
   color: var(--greyLight-3);
@@ -57,16 +55,12 @@
   padding-right: 20px;
   padding-bottom: 10px;
 }
-.label-design{
-
+.label-design {
   font-size: 1.2rem;
   display: flex;
   margin-bottom: 5px;
   color: var(--primary);
-
-
 }
-
 
 @media screen and (min-width: 992px) {
   .form__input {

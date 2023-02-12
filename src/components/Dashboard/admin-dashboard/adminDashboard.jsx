@@ -10,36 +10,34 @@ import HeaderChip from "../../HeaderChip";
 import Navbar from "../../Navbar";
 
 const AdminDashboard = () => {
- 
   return (
     <>
-    <Navbar/>
-      <MainBox>
-        <HeaderChip headerText={"Admin Dashboard"} />
+      <Navbar />
+      <div style={{ margin: "40px" }}>
+        <MainBox>
+          <HeaderChip headerText={"Admin Dashboard"} />
 
-        <div className="card-container">
-          <Card
-            image={teacherImage}
-            title={"Teacher Module"}
-            path={"./admin"}
-          />
-          <Card
-            image={attendanceImage}
-            title={"Attendance Module"}
-            path={"./teacher"}
-          />
-        </div>
+          <div className="card-container">
+            <Card
+              image={teacherImage}
+              title={"Teacher Module"}
+              path={"./admin"}
+            />
+            <Card
+              image={attendanceImage}
+              title={"Attendance Module"}
+              path={"./teacher"}
+            />
 
-        <div className="card-container">
-          <Card
-            image={reportsImage}
-            title={"Reports Module"}
-            path={"./admin"}
-          />
-          <Card image={feeImage} title={"Fee Module"} path={"./teacher"} />
-        </div>
-      </MainBox>
-      
+            <Card
+              image={reportsImage}
+              title={"Reports Module"}
+              path={"./admin"}
+            />
+            <Card image={feeImage} title={"Fee Module"} path={"./teacher"} />
+          </div>
+        </MainBox>
+      </div>
     </>
   );
 };

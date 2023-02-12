@@ -7,18 +7,19 @@ import MainBox from "../MainBox";
 function LandingPage() {
   return (
     <>
-      <MainBox>
-        <HeaderChip headerText={"Welcome To IMS"} />
-
-        <div className="card-container">
-          <Card image={adminImage} title={"Admin Login"} path={"./admin"} />
-          <Card
-            image={teacherImage}
-            title={"Teacher Login"}
-            path={"./teacher"}
-          />
-        </div>
-      </MainBox>
+      <div style={{ padding: "50px" }}>
+        <MainBox>
+          <HeaderChip headerText={"Welcome To IMS"} />
+          <div className="card-container">
+            <Card image={adminImage} title={"Admin Login"} path={"./admin"} />
+            <Card
+              image={teacherImage}
+              title={"Teacher Login"}
+              path={"./teacher"}
+            />
+          </div>
+        </MainBox>
+      </div>
     </>
   );
 }
