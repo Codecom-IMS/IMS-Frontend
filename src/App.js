@@ -9,7 +9,19 @@ import AdminLogin from "./components/Login/AdminLogin/index.jsx";
 import TeacherLogin from "./components/Login/TeacherLogin/index.jsx";
 import AdminDashboard from "./components/Dashboard/AdminDashboard/adminDashboard.jsx";
 import TeacherDashboard from "./components/Dashboard/TeacherDashboard/teacherDashboard.jsx";
-
+import {
+  AddStudentPage,
+  AddTeacherPage,
+  DeleteStudentPage,
+  DeleteTeacherPage,
+  MainPage,
+  NavBar,
+  StudentPage,
+  TeacherPage,
+  UpdateStudentPage,
+  UpdateTeacherPage,
+  Waves,
+} from "./components";
 function App() {
   const router = createBrowserRouter([
     {
@@ -47,7 +59,43 @@ function App() {
         {
           path: "/teacher-dashboard",
           element: <TeacherDashboard />,
-        }
+        },
+        {
+        path: "/admin-dashboard/mainPage",
+        element: <MainPage />,
+      },
+      {
+        path: "/admin-dashboard/mainPage/studentPage",
+        element: <StudentPage />,
+      },
+      {
+        path: "/admin-dashboard/mainPage/teacherPage",
+        element: <TeacherPage />,
+      },
+      {
+        path: "/admin-dashboard/mainPage/studentPage/addStudentPage",
+        element: <AddStudentPage />,
+      },
+      {
+        path: "/admin-dashboard/mainPage/studentPage/updateStudentPage",
+        element: <UpdateStudentPage />,
+      },
+      {
+        path: "/admin-dashboard/mainPage/studentPage/deleteStudentPage",
+        element: <DeleteStudentPage />,
+      },
+      {
+        path: "/admin-dashboard/mainPage/teacherPage/addTeacherPage",
+        element: <AddTeacherPage />,
+      },
+      {
+        path: "/admin-dashboard/mainPage/teacherPage/updateTeacherPage",
+        element: <UpdateTeacherPage />,
+      },
+      {
+        path: "/admin-dashboard/mainPage/teacherPage/deleteTeacherPage",
+        element: <DeleteTeacherPage />,
+      },
       ],
     },
   ]);

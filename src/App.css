@@ -2,8 +2,8 @@
   --primary-light: #8abdff;
   --primary: #6d5dfc;
   --primary-dark: #5b0eeb;
-  --white: #FFFFFF;
-  --greyLight-1: #E4EBF5;
+  --white: #ffffff;
+  --greyLight-1: #e4ebf5;
   --greyLight-2: #c8d0e7;
   --greyLight-3: #bec8e4;
   --greyDark: #9baacf;
@@ -34,12 +34,7 @@
     rgba(84, 58, 183, 1) 0%,
     rgba(0, 172, 193, 1) 100%
   );
-  
-
-}
-
-.App-link {
-  color: #61dafb;
+  color: white;
 }
 
 @keyframes App-logo-spin {
@@ -50,6 +45,35 @@
     transform: rotate(360deg);
   }
 }
+label {
+  color: var(--greyDark);
+  padding: 0.4rem;
+  font-size: 1.2rem;
+}
+@media screen and (max-width: 650px) {
+  .card-container {
+    flex-direction: column;
+  }
+}
+.card-container {
+  display: grid;
+  grid-template-columns: 17.6rem 19rem 20.4rem;
+  grid-template-rows: repeat(autofit, min-content);
+  grid-column-gap: 5rem;
+  grid-row-gap: 2.5rem;
+  align-items: center;
+  background: var(--greyLight-1);
+  display: flex;
+}
+.radio-container {
+  display: flex;
+  flex-direction: row;
+}
+.inner-header {
+  height: fit-contents;
+  width: 100%;
+  margin: 0;
+  padding: 5px;
 .li :hover:not(.active) {
   background-color: rgb(245, 237, 237);
 }

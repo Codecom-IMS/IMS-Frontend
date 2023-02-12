@@ -1,0 +1,20 @@
+.add-teacher-form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-teacher-fields {
+  padding-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+@media screen and (max-width: 900px) {
+  .add-teacher-fields {
+    flex-direction: column;
+  }
+}
