@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./card.css";
+import "./Card.css";
 
-export default function Card({ image, title, path }) {
+const Card = ({ image, title, path }) => {
   return (
     <Link to={path}>
       <div className="card">
@@ -15,4 +15,5 @@ export default function Card({ image, title, path }) {
       </div>
     </Link>
   );
-}
+};
+export default Card;

@@ -13,11 +13,12 @@ import {
   DateField,
   Toast,
 } from "../index.js";
+
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
 import "../Button/button.css";
 import "../InputForm/inputForm.css";
-import "../ReportsRadioButton/radioButton.css";
+import "../reportsRadioButton/radioButton.css";
 import "./reportPage.css";
 
 export default function ReportPage({ endPoint1, endPoint2, children }) {
@@ -27,8 +28,10 @@ export default function ReportPage({ endPoint1, endPoint2, children }) {
   };
   const [grade, setGrade] = useState("pg");
   const changeHandler3 = async (inputData) => {
+    console.log(inputData);
     setGrade(inputData);
   };
+  console.log(grade);
   const [startDate, setStartDate] = useState("");
   const changeHandler1 = (inputData) => {
     setStartDate(inputData);

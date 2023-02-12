@@ -1,3 +1,13 @@
+:root {
+  --primary-light: #8abdff;
+  --primary: #6d5dfc;
+  --primary-dark: #5b0eeb;
+  --white: #ffffff;
+  --greyLight-1: #e4ebf5;
+  --greyLight-2: #c8d0e7;
+  --greyLight-3: #bec8e4;
+  --greyDark: #9baacf;
+}
 .App {
   text-align: center;
   /* display: flex; */
@@ -17,7 +27,6 @@
 
 .App-header {
   justify-content: center;
-  /* height: fit-content; */
   position: relative;
   text-align: center;
   background: linear-gradient(
@@ -25,10 +34,7 @@
     rgba(84, 58, 183, 1) 0%,
     rgba(0, 172, 193, 1) 100%
   );
-}
-
-.App-link {
-  color: #61dafb;
+  color: white;
 }
 
 @keyframes App-logo-spin {
@@ -39,18 +45,42 @@
     transform: rotate(360deg);
   }
 }
+label {
+  color: var(--greyDark);
+  padding: 0.4rem;
+  font-size: 1.2rem;
+}
+@media screen and (max-width: 650px) {
+  .card-container {
+    flex-direction: column;
+  }
+}
+.card-container {
+  display: grid;
+  grid-template-columns: 17.6rem 19rem 20.4rem;
+  grid-template-rows: repeat(autofit, min-content);
+  grid-column-gap: 5rem;
+  grid-row-gap: 2.5rem;
+  align-items: center;
+  background: var(--greyLight-1);
+  display: flex;
+}
+.radio-container {
+  display: flex;
+  flex-direction: row;
+}
 .li :hover:not(.active) {
   background-color: rgb(245, 237, 237);
 }
 .inner-header {
-  height: 71vh;
+  min-height: 71vh;
+  height: fit-content;
   width: 100%;
   margin: 0;
   padding: 0;
 }
 
 .flex {
-  /*Flexbox for containers*/
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,18 +98,15 @@
   height: auto;
 }
 .Navbardiv {
-  display: flex;
-  justify-content: center;
-  /* padding-left: 70px ; */
   padding-top: 20px;
 }
 .card-container {
+  display: grid;
   grid-template-columns: 17.6rem 19rem 20.4rem;
   grid-template-rows: repeat(autofit, min-content);
   grid-column-gap: 5rem;
   grid-row-gap: 2.5rem;
-  margin-top: 30px;
   align-items: center;
-  /* background: var(--greyLight-1); */
+  background: var(--greyLight-1);
   display: flex;
 }

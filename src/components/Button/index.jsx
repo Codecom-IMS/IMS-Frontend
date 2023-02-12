@@ -4,7 +4,7 @@ import "./button.css";
 function Button({ buttonName, buttonChange }) {
   return (
     <button className="btn btn__primary" onClick={buttonChange}>
-      {buttonName}
+      <p>{buttonName}</p>
     </button>
   );
 }
