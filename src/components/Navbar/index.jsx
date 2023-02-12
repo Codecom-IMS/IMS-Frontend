@@ -1,34 +1,33 @@
 import React from "react";
-import {  FaSignOutAlt, FaHome } from "react-icons/fa";
+import { FaHome, FaSignOutAlt } from "react-icons/fa";
 import "./navBar.css";
-import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
 function Navbar() {
   const Navigate = useNavigate();
-  const hnadleHomeButton=()=>{
-    Navigate("/");
+  const handleHomeButton=()=>{
+    Navigate("/admin-dashboard");
     
   }
   const handleLogout = () => {
-    Cookies.remove("Jwt");
     Cookies.remove("Jwt");
 
     Navigate("/");
   };
   return (
-    <>
-      <div className="Navbardiv">
-        <div className="Navbar">
-          <div className="Navbar__icon">
-            <FaHome  onClick={hnadleHomeButton} />
-          </div>
-          <p>Institute Monitoring System</p>
+    <div className="Navbardiv">
+      <div className="Navbar">
+        <a href="http://localhost:3000/landingPage">
           <div className="Navbar__icon">
             <FaSignOutAlt onClick={handleLogout}/>
           </div>
-        </div>
+        </a>
+        <p className="text">Institute Monitoring System</p>
+        <a href="http://localhost:3000/">
+          <div className="Navbar__icon">
+            <FaHome onClick={handleHomeButton}/>
+          </div>
+        </a>
       </div>
-    </>
+    </div>
   );
 }
 
