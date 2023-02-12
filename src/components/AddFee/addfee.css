@@ -1,0 +1,36 @@
+@import url(//fonts.googleapis.com/css?family=Lato:300:400);
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  overflow-y: scroll;
+}
+@media screen and (min-width: 900px) {
+  html {
+    font-size: 75%;
+  }
+}
+
+.AddFeeContainer {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  margin-top: 30px;
+}
+
+.AddFeeComponents {
+  width: fit-content;
+  height: fit-content;
+  border-radius: 1rem;
+  box-shadow: 0.8rem 0.8rem 0.8rem rgb(78, 78, 161),
+    -0.2rem -0.2rem 1rem rgb(78, 78, 161);
+  grid-column-gap: 5rem;
+  grid-row-gap: 2.5rem;
+  align-items: center;
+  background: var(--greyLight-1);
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}

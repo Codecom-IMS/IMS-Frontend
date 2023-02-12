@@ -1,0 +1,29 @@
+.form__input {
+  width: 20.4rem;
+  height: 4rem;
+  border: none;
+  border-radius: 1rem;
+  font-size: 1.4rem;
+  padding-left: 1.4rem;
+  padding-right: 1.4rem;
+  box-shadow: 0.2rem 0.2rem 0.5rem var(--greyLight-2),
+    -0.2rem -0.2rem 0.5rem var(--white);
+  background: none;
+  font-family: inherit;
+  color: var(--primary);
+  padding-top: 5px;
+}
+.drop-down-label {
+  margin-top: 0.5rem;
+  display: inline-block;
+  width: 9rem;
+  text-align: right;
+}
+@media screen and (max-width: 900px) {
+  .drop-down-label {
+    text-align: left;
+  }
+}
+.dropDownContent {
+  background-color: var(--greyLight-1);
+}
