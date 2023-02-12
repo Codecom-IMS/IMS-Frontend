@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import InputAttendancePage from "./components/InputAttendancePage";
 import EditAttendancePage from "./components/EditAttendancePage";
 import StartPoint from "./components/StartPoint";
-import AttendanceManagementPage from "./components/AttendanceManagementPage";
+import AttendanceManagementPage from "./components/attendanceManagementPage";
 import LandingPage from "./components/LandingPage/index.jsx";
 import AdminLogin from "./components/Login/AdminLogin/index.jsx";
 import TeacherLogin from "./components/Login/TeacherLogin/index.jsx";
@@ -17,15 +17,15 @@ function App() {
       element: <StartPoint />,
       children: [
         {
-          path: "/attendanceManagementPage",
+          path: "/teacher-dashboard/attendanceManagementPage",
           element: <AttendanceManagementPage />,
         },
         {
-          path: "/attendanceManagementPage/editAttendance",
+          path: "/teacher-dashboard/attendanceManagementPage/editAttendance",
           element: <EditAttendancePage/>,
         },
         {
-          path: "/attendanceManagementPage/inputAttendance",
+          path: "/teacher-dashboard/attendanceManagementPage/inputAttendance",
           element: <InputAttendancePage/>,
         },{
           path: "/",

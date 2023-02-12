@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
 import "./adminLogin.css";
-import Toast from "../../toast/toast";
+import Toast from "../../Toast/toast";
 
 const AdminLogin = ({ Admin }) => {
   const Navigate = useNavigate();

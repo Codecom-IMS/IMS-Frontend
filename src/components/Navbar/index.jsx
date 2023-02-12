@@ -1,8 +1,10 @@
+import Cookies from "js-cookie";
 import React from "react";
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import "./navBar.css";
 function Navbar() {
-  const Navigate = useNavigate();
+  const Navigate = useNavigate;
   const handleHomeButton=()=>{
     Navigate("/admin-dashboard");
     

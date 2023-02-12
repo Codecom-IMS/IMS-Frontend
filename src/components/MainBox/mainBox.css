@@ -42,7 +42,3 @@ html {
   flex-direction: column;
   padding: 40px;
 }
-.H1 {
-  color: var(--greyDark);
-  font-family: "Lato", sans-serif;
-}

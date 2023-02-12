@@ -4,7 +4,7 @@ import AttendanceFetchApi from "../AttendanceFetchApi";
 import Form from "../InputForm";
 import HeaderChip from "../HeaderChip";
 import MainBox from "../MainBox";
-import Navbar from "../NavBar";
+import Navbar from "../Navbar";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
 import Toast from "../Toast";

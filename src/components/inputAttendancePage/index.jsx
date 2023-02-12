@@ -4,7 +4,7 @@ import Form from "../InputForm";
 import Headerchip from "../HeaderChip";
 import Button from "../Button";
 import AttendanceFetchApi from "../AttendanceFetchApi";
-import Navbar from "../NavBar";
+import Navbar from "../Navbar";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
 import Toast from "../Toast";

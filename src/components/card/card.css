@@ -21,7 +21,6 @@ Link:active {
   box-shadow: inset 0.2rem 0.2rem 1rem var(--greyDark),
     inset -0.2rem -0.2rem 1rem var(--greyLight-1);
 }
-
 .user-logo {
   padding: 10px;
 }

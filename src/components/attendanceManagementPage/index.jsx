@@ -4,7 +4,7 @@ import inputPicture from "../../assets/InputPicture.png";
 import editPicture from "../../assets/EditPicture.png";
 import MainBox from "../MainBox";
 import HeaderChip from "../HeaderChip";
-import Navbar from "../NavBar";
+import Navbar from "../Navbar";
 export default function AttendanceManagementPage() {
   return (
     <>

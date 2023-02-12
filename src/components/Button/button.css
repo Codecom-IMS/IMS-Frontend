@@ -17,6 +17,7 @@
   justify-content: center;
   cursor: pointer;
   transition: 0.3s ease;
+  margin-left: 0;
 }
 .btn__primary {
   grid-column: 1/2;

@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "../card/index";
+import Card from "../Card/index";
 import adminImage from "../../assets/images/admin.png";
 import teacherImage from "../../assets/images/teacher.png";
 import HeaderChip from "../LoginHeaderChip";

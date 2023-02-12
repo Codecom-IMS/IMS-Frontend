@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "../../card";
+import Card from "../../Card";
 import MainBox from "../../MainBox";
 import teacherImage from "../../../assets/images/teacher.png";
 import attendanceImage from "../../../assets/images/attendance.png";
@@ -26,7 +26,7 @@ const AdminDashboard = () => {
             <Card
               image={attendanceImage}
               title={"Attendance Module"}
-              path={"./teacher"}
+              path={"./attendanceManagementPage"}
             />
 
             <Card
