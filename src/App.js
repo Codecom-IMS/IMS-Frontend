@@ -1,5 +1,14 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import InputAttendancePage from "./components/InputAttendancePage";
+import EditAttendancePage from "./components/EditAttendancePage";
+import StartPoint from "./components/StartPoint";
+import AttendanceManagementPage from "./components/attendanceManagementPage";
+import LandingPage from "./components/LandingPage/index.jsx";
+import AdminLogin from "./components/Login/AdminLogin/index.jsx";
+import TeacherLogin from "./components/Login/TeacherLogin/index.jsx";
+import AdminDashboard from "./components/Dashboard/AdminDashboard/adminDashboard.jsx";
+import TeacherDashboard from "./components/Dashboard/TeacherDashboard/teacherDashboard.jsx";
 import {
   AddStudentPage,
   AddTeacherPage,
@@ -13,61 +22,86 @@ import {
   UpdateTeacherPage,
   Waves,
 } from "./components";
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <MainPage />,
-    children: [
-      {
-        path: "/mainPage",
+function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <StartPoint />,
+      children: [
+        {
+          path: "/teacher-dashboard/attendanceManagementPage",
+          element: <AttendanceManagementPage />,
+        },
+        {
+          path: "/teacher-dashboard/attendanceManagementPage/editAttendance",
+          element: <EditAttendancePage/>,
+        },
+        {
+          path: "/teacher-dashboard/attendanceManagementPage/inputAttendance",
+          element: <InputAttendancePage/>,
+        },{
+          path: "/",
+          element: <LandingPage />,
+        },
+        {
+          path: "/admin",
+          element: <AdminLogin />,
+        },
+        {
+          path: "/admin-dashboard",
+          element: <AdminDashboard />,
+        },
+        {
+          path: "/teacher",
+          element: <TeacherLogin />,
+        },
+  
+        {
+          path: "/teacher-dashboard",
+          element: <TeacherDashboard />,
+        },
+        {
+        path: "/admin-dashboard/mainPage",
         element: <MainPage />,
       },
       {
-        path: "/mainPage/studentPage",
+        path: "/admin-dashboard/mainPage/studentPage",
         element: <StudentPage />,
       },
       {
-        path: "/mainPage/teacherPage",
+        path: "/admin-dashboard/mainPage/teacherPage",
         element: <TeacherPage />,
       },
       {
-        path: "/mainPage/studentPage/addStudentPage",
+        path: "/admin-dashboard/mainPage/studentPage/addStudentPage",
         element: <AddStudentPage />,
       },
       {
-        path: "/mainPage/studentPage/updateStudentPage",
+        path: "/admin-dashboard/mainPage/studentPage/updateStudentPage",
         element: <UpdateStudentPage />,
       },
       {
-        path: "/mainPage/studentPage/deleteStudentPage",
+        path: "/admin-dashboard/mainPage/studentPage/deleteStudentPage",
         element: <DeleteStudentPage />,
       },
       {
-        path: "/mainPage/teacherPage/addTeacherPage",
+        path: "/admin-dashboard/mainPage/teacherPage/addTeacherPage",
         element: <AddTeacherPage />,
       },
       {
-        path: "/mainPage/teacherPage/updateTeacherPage",
+        path: "/admin-dashboard/mainPage/teacherPage/updateTeacherPage",
         element: <UpdateTeacherPage />,
       },
       {
-        path: "/mainPage/teacherPage/deleteTeacherPage",
+        path: "/admin-dashboard/mainPage/teacherPage/deleteTeacherPage",
         element: <DeleteTeacherPage />,
       },
-    ],
-  },
-]);
-
-function App() {
+      ],
+    },
+  ]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="inner-header flex">
-          <NavBar />
-          <RouterProvider router={router} />
-        </div>
-        <Waves />
-      </header>
+    <div>
+      <RouterProvider router={router} />
     </div>
   );
 }

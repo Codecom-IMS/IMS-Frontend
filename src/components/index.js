@@ -1,7 +1,6 @@
 export { default as Waves } from "./Waves";
 export { default as MainBox } from "./UserManagementMainDiv";
-export { default as NavBar } from "./NavBar";
-export { default as HeaderChip } from "./ModuleTitle";
+export { default as ModuleTitle } from "./ModuleTitle";
 export { default as BlueButton } from "./BlueButton";
 export { default as RedButton } from "./RedButton";
 export { default as Card } from "./Card";
@@ -20,3 +19,8 @@ export { default as DeleteStudentPage } from "./DeleteStudentPage";
 export { default as AddTeacherPage } from "./AddTeacherPage";
 export { default as UpdateTeacherPage } from "./UpdateTeacherPage";
 export { default as DeleteTeacherPage } from "./DeleteTeacherPage";
+export { default as HeaderChip } from "./HeaderChip";
+export { default as Button } from "./Button";
+export { default as Navbar } from "./Navbar";
+export { default as LoginHeaderChip } from "./LoginHeaderChip";
+

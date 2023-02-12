@@ -8,7 +8,6 @@
   --greyLight-3: #bec8e4;
   --greyDark: #9baacf;
 }
-
 .App {
   text-align: center;
 }
@@ -16,6 +15,8 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  justify-content: center;
+
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -25,7 +26,9 @@
 }
 
 .App-header {
+  justify-content: center;
   position: relative;
+  text-align: center;
   background: linear-gradient(
     60deg,
     rgba(84, 58, 183, 1) 0%,
@@ -71,6 +74,15 @@ label {
   width: 100%;
   margin: 0;
   padding: 5px;
+.li :hover:not(.active) {
+  background-color: rgb(245, 237, 237);
+}
+.inner-header {
+  min-height: 71vh;
+  height: fit-content;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .flex {
@@ -80,6 +92,26 @@ label {
   text-align: center;
   flex-direction: column;
 }
-.wavesDiv {
-  height: auto;
+.logo {
+  width: 50px;
+  fill: white;
+  padding-right: 15px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.wavesDiv{
+ height: auto;
+}
+.Navbardiv{
+  padding-top: 20px;
+}
+.card-container{
+  display: grid;
+  grid-template-columns: 17.6rem 19rem 20.4rem;
+  grid-template-rows: repeat(autofit, min-content);
+  grid-column-gap: 5rem;
+  grid-row-gap: 2.5rem;
+  align-items: center;
+  background: var(--greyLight-1);
+  display: flex;
 }
