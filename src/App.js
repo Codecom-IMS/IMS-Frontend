@@ -1,5 +1,8 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ReportPage from "./components/ReportsPage";
+import ReportsPageMain from "./components/ReportsPageMain";
+
 import InputAttendancePage from "./components/InputAttendancePage";
 import EditAttendancePage from "./components/EditAttendancePage";
 import StartPoint from "./components/StartPoint";
@@ -99,6 +102,30 @@ function App() {
         {
           path:"/teacher-dashboard/feeManagement",
           element: <FeeManagement />,
+        },
+        {
+          path: "/teacher-dashboard/reportsPage/feeReports",
+          element: (
+            <ReportPage
+              endPoint1="getOneStudentFeeReport"
+              endPoint2="getWholeClassFeeReport"
+              children="Fee Report"
+            />
+          ),
+        },
+        {
+          path: "/teacher-dashboard/reportsPage/attendanceReports",
+          element: (
+            <ReportPage
+              endPoint1="getOneStudentAttendance"
+              endPoint2="getClassAttendance"
+              children="Attendance Report"
+            />
+          ),
+        },
+        {
+          path: "/teacher-dashboard/reportsPage",
+          element: <ReportsPageMain />,
         }
       ],
     },

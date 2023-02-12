@@ -12,8 +12,8 @@ function Form({ text, type, placeholder, handleChange }) {
     </option>,
   ];
   for (let i = 1; i < 11; i++) {
-    options[i + 2] = (
-      <option className="dropDownContent" key={i} value={`${i}`}>
+    options.push(
+      <option className="dropDownContent" key={`${i}`} value={`${i}`}>
         {i}
       </option>
     );
