@@ -20,7 +20,7 @@ import {
   UpdateStudentPage,
   UpdateTeacherPage,
 } from "./components/index";
-import { FeeManagement } from "./components";
+import FeeManagement from "./components/FeeManagement";
 function App() {
   const router = createBrowserRouter([
     {

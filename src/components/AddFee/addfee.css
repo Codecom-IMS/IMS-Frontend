@@ -1,15 +1,4 @@
 @import url(//fonts.googleapis.com/css?family=Lato:300:400);
-:root {
-  --primary-light: #8abdff;
-  --primary: #6d5dfc;
-  --primary-dark: #5b0eeb;
-  --white: #ffffff;
-  --greyLight-1: #e4ebf5;
-  --greyLight-2: #c8d0e7;
-  --greyLight-3: #bec8e4;
-  --greyDark: #9baacf;
-}
-
 html {
   box-sizing: border-box;
   font-size: 62.5%;
@@ -22,7 +11,6 @@ html {
 }
 
 .AddFeeContainer {
-  min-height: 100vh;
   display: flex;
   flex: 1;
   width: 100%;
@@ -35,7 +23,6 @@ html {
 .AddFeeComponents {
   width: fit-content;
   height: fit-content;
-  height: 60vh;
   border-radius: 1rem;
   box-shadow: 0.8rem 0.8rem 0.8rem rgb(78, 78, 161),
     -0.2rem -0.2rem 1rem rgb(78, 78, 161);

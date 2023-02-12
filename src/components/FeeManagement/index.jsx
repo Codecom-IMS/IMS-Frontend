@@ -5,13 +5,15 @@ import {
   HeaderChip,
   Form,
   Button,
-  Waves,
-  NavBar,
+  Navbar,
   AddFeeDiv,
   Field,
   Toast,
 } from "../index";
-import { dataValidator, rollNumberValidator } from "../../services/utils/FeeValidator/index";
+import {
+  dataValidator,
+  rollNumberValidator,
+} from "../../services/utils/FeeValidator/index";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
 function FeeManagement() {
@@ -76,68 +78,60 @@ function FeeManagement() {
     parseInt(apiData?.PrevArrears?.arrears);
 
   return (
-    <div className="App-header">
-      <NavBar />
-      <div className="inner-header flex">
-        {apiData?.studentDetails.length === 0 ? (
-          <MainBox>
-            <HeaderChip HeaderText={"Fee module"} />
-            <Form
-              text="Enter Roll Number"
-              type="number"
-              placeholder="e.g F18-1138"
-              handleChange={rollhandleChange}
+    <>
+      <Navbar />
+      {apiData?.studentDetails.length === 0 ? (
+        <MainBox>
+          <HeaderChip HeaderText={"Fee module"} />
+          <Form
+            text="Enter Roll Number"
+            type="number"
+            placeholder="e.g F18-1138"
+            handleChange={rollhandleChange}
+          />
+          <Button buttonName="search" buttonChange={searchStudent} />
+        </MainBox>
+      ) : (
+        <AddFeeDiv>
+          <HeaderChip HeaderText={"Fee module"} />
+          <div className="feediv1">
+            <Field
+              text="Student Name :"
+              data={apiData.studentDetails[0]?.student_name}
             />
-            <Button buttonName="search" buttonChange={searchStudent} />
-          </MainBox>
-        ) : (
-          <AddFeeDiv>
-            <HeaderChip HeaderText={"Fee module"} />
-            <div className="feediv1">
-              <Field
-                text="Student Name :"
-                data={apiData.studentDetails[0]?.student_name}
-              />
-              <Field
-                text=" Basic fee :"
-                data={apiData.studentDetails[0]?.basic_fee}
-              />
-              <Field
-                text=" Others : "
-                data={apiData.studentDetails[0]?.others}
-              />
-            </div>
-            <div className="feediv2">
-              <Field
-                text=" Roll number :"
-                data={apiData.studentDetails[0]?.roll_number}
-              />
-              <Field
-                text=" Previous Arrears :"
-                data={
-                  apiData?.PrevArrears?.arrears === undefined
-                    ? 0
-                    : apiData?.PrevArrears?.arrears
-                }
-              />
-              <Field text=" Total Fee " data={total} />
-            </div>
-            <div className="feediv3">
-              <Form
-                type="number"
-                placeholder="e.g 2800"
-                handleChange={feeHandleChange}
-              />
-              <Button buttonName="Add Fee" buttonChange={addFee} />
-            </div>
-          </AddFeeDiv>
-        )}
-      </div>
-      <div className="wavesdiv">
-        <Waves />
-      </div>
+            <Field
+              text=" Basic fee :"
+              data={apiData.studentDetails[0]?.basic_fee}
+            />
+            <Field text=" Others : " data={apiData.studentDetails[0]?.others} />
+          </div>
+          <div className="feediv2">
+            <Field
+              text=" Roll number :"
+              data={apiData.studentDetails[0]?.roll_number}
+            />
+            <Field
+              text=" Previous Arrears :"
+              data={
+                apiData?.PrevArrears?.arrears === undefined
+                  ? 0
+                  : apiData?.PrevArrears?.arrears
+              }
+            />
+            <Field text=" Total Fee " data={total} />
+          </div>
+          <div className="feediv3">
+            <Form
+              type="number"
+              placeholder="e.g 2800"
+              handleChange={feeHandleChange}
+            />
+            <Button buttonName="Add Fee" buttonChange={addFee} />
+          </div>
+        </AddFeeDiv>
+      )}
       <Toast />
-    </div>
+    </>
   );
 }
 
