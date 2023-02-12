@@ -15,13 +15,11 @@ import {
   DeleteStudentPage,
   DeleteTeacherPage,
   MainPage,
-  NavBar,
   StudentPage,
   TeacherPage,
   UpdateStudentPage,
   UpdateTeacherPage,
-  Waves,
-} from "./components";
+} from "./components/index";
 function App() {
   const router = createBrowserRouter([
     {
@@ -34,12 +32,13 @@ function App() {
         },
         {
           path: "/teacher-dashboard/attendanceManagementPage/editAttendance",
-          element: <EditAttendancePage/>,
+          element: <EditAttendancePage />,
         },
         {
           path: "/teacher-dashboard/attendanceManagementPage/inputAttendance",
-          element: <InputAttendancePage/>,
-        },{
+          element: <InputAttendancePage />,
+        },
+        {
           path: "/",
           element: <LandingPage />,
         },
@@ -55,47 +54,47 @@ function App() {
           path: "/teacher",
           element: <TeacherLogin />,
         },
-  
+
         {
           path: "/teacher-dashboard",
           element: <TeacherDashboard />,
         },
         {
-        path: "/admin-dashboard/mainPage",
-        element: <MainPage />,
-      },
-      {
-        path: "/admin-dashboard/mainPage/studentPage",
-        element: <StudentPage />,
-      },
-      {
-        path: "/admin-dashboard/mainPage/teacherPage",
-        element: <TeacherPage />,
-      },
-      {
-        path: "/admin-dashboard/mainPage/studentPage/addStudentPage",
-        element: <AddStudentPage />,
-      },
-      {
-        path: "/admin-dashboard/mainPage/studentPage/updateStudentPage",
-        element: <UpdateStudentPage />,
-      },
-      {
-        path: "/admin-dashboard/mainPage/studentPage/deleteStudentPage",
-        element: <DeleteStudentPage />,
-      },
-      {
-        path: "/admin-dashboard/mainPage/teacherPage/addTeacherPage",
-        element: <AddTeacherPage />,
-      },
-      {
-        path: "/admin-dashboard/mainPage/teacherPage/updateTeacherPage",
-        element: <UpdateTeacherPage />,
-      },
-      {
-        path: "/admin-dashboard/mainPage/teacherPage/deleteTeacherPage",
-        element: <DeleteTeacherPage />,
-      },
+          path: "/teacher-dashboard/mainPage",
+          element: <MainPage />,
+        },
+        {
+          path: "/teacher-dashboard/mainPage/studentPage",
+          element: <StudentPage />,
+        },
+        {
+          path: "/teacher-dashboard/mainPage/teacherPage",
+          element: <TeacherPage />,
+        },
+        {
+          path: "/teacher-dashboard/mainPage/studentPage/addStudentPage",
+          element: <AddStudentPage />,
+        },
+        {
+          path: "/teacher-dashboard/mainPage/studentPage/updateStudentPage",
+          element: <UpdateStudentPage />,
+        },
+        {
+          path: "/teacher-dashboard/mainPage/studentPage/deleteStudentPage",
+          element: <DeleteStudentPage />,
+        },
+        {
+          path: "/teacher-dashboard/mainPage/teacherPage/addTeacherPage",
+          element: <AddTeacherPage />,
+        },
+        {
+          path: "/teacher-dashboard/mainPage/teacherPage/updateTeacherPage",
+          element: <UpdateTeacherPage />,
+        },
+        {
+          path: "/teacher-dashboard/mainPage/teacherPage/deleteTeacherPage",
+          element: <DeleteTeacherPage />,
+        },
       ],
     },
   ]);

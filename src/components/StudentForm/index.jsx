@@ -152,7 +152,7 @@ const StudentForm = ({
             status: "active",
           };
           await fetchApi(url, callMethod, studentData);
-          toastNotification("Student Edited Successfully");
+          toastNotification("Student Edited Successfully", "success");
           setTimeout(() => {
             window.location.reload();
           }, 3000);

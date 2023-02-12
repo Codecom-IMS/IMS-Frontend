@@ -13,15 +13,15 @@ const TeacherDashboard = () => {
   return (
     <>
       <Navbar />
-      
+
       <MainBox>
         <HeaderChip headerText={"Teacher Dashboard"} />
 
         <div className="card-container">
           <Card
             image={teacherImage}
-            title={"Teacher Module"}
-            path={"./admin"}
+            title={"User Management"}
+            path={"./mainPage"}
           />
           <Card
             image={attendanceImage}

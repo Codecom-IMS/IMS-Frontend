@@ -1,17 +1,21 @@
 import React, { useState } from "react";
 import {
   MainBox,
-  HeaderChip,
+  ModuleTitle,
   InputField,
   BlueButton,
   RedButton,
   Toast,
+  Navbar,
 } from "../index";
 import fetchApi from "../FetchApi";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
 import "./deleteStudentPage.css";
-import { isDataFound, searchFieldValidator } from "../../services/utils/Validator/validator";
+import {
+  isDataFound,
+  searchFieldValidator,
+} from "../../services/utils/Validator/validator";
 
 const DeleteStudentPage = () => {
   const [rollNumber, setRollNumber] = useState("");
@@ -62,48 +66,51 @@ const DeleteStudentPage = () => {
     }
   };
   return (
-    <MainBox>
-      <HeaderChip headerText={"Delete Student"} />
-      {studentFound ? (
-        <>
-          <div className="delete-page-fields">
-            <InputField
-              inputType={"number"}
-              label={"Roll Number:"}
-              value={student?.body.roll_number}
-              readOnly={true}
-            />
-            <InputField
-              inputType={"text"}
-              label={"Student Name:"}
-              value={student?.body.student_name}
-              readOnly={true}
-            />
-            <InputField
-              inputType={"text"}
-              label={"Father Name:"}
-              value={student?.body.father_name}
-              readOnly={true}
-            />
-          </div>
-          <RedButton buttonText={"Delete"} onSubmitHandler={deleteStudent} />
-        </>
-      ) : (
-        <>
-          <div className="search-field">
-            <InputField
-              inputType={"number"}
-              label={"Roll Number:"}
-              placeholder={"Enter Roll Number"}
-              value={rollNumber}
-              onChangeFunction={onChangeRollNumber}
-            />
-          </div>
-          <BlueButton buttonText={"Search"} onSubmitHandler={onSubmit} />
-        </>
-      )}
-      <Toast />
-    </MainBox>
+    <>
+      <Navbar />
+      <MainBox>
+        <ModuleTitle headerText={"Delete Student"} />
+        {studentFound ? (
+          <>
+            <div className="delete-page-fields">
+              <InputField
+                inputType={"number"}
+                label={"Roll Number:"}
+                value={student?.body.roll_number}
+                readOnly={true}
+              />
+              <InputField
+                inputType={"text"}
+                label={"Student Name:"}
+                value={student?.body.student_name}
+                readOnly={true}
+              />
+              <InputField
+                inputType={"text"}
+                label={"Father Name:"}
+                value={student?.body.father_name}
+                readOnly={true}
+              />
+            </div>
+            <RedButton buttonText={"Delete"} onSubmitHandler={deleteStudent} />
+          </>
+        ) : (
+          <>
+            <div className="search-field">
+              <InputField
+                inputType={"number"}
+                label={"Roll Number:"}
+                placeholder={"Enter Roll Number"}
+                value={rollNumber}
+                onChangeFunction={onChangeRollNumber}
+              />
+            </div>
+            <BlueButton buttonText={"Search"} onSubmitHandler={onSubmit} />
+          </>
+        )}
+        <Toast />
+      </MainBox>
+    </>
   );
 };
 

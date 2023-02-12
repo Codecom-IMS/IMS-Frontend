@@ -9,7 +9,7 @@ export { default as InputField } from "./CustomInputField";
 export { default as DropDown } from "./DropDown";
 export { default as StudentForm } from "./StudentForm";
 export { default as TeacherForm } from "./TeacherForm";
-export { default as Toast } from "./Taost";
+export { default as Toast } from "./Toast";
 export { default as MainPage } from "./MainPage";
 export { default as StudentPage } from "./StudentPage";
 export { default as TeacherPage } from "./TeacherPage";
@@ -23,4 +23,3 @@ export { default as HeaderChip } from "./HeaderChip";
 export { default as Button } from "./Button";
 export { default as Navbar } from "./Navbar";
 export { default as LoginHeaderChip } from "./LoginHeaderChip";
-

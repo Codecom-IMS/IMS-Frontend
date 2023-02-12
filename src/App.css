@@ -16,7 +16,6 @@
   height: 40vmin;
   pointer-events: none;
   justify-content: center;
-
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -69,11 +68,6 @@ label {
   display: flex;
   flex-direction: row;
 }
-.inner-header {
-  height: fit-contents;
-  width: 100%;
-  margin: 0;
-  padding: 5px;
 .li :hover:not(.active) {
   background-color: rgb(245, 237, 237);
 }
@@ -99,13 +93,13 @@ label {
   display: inline-block;
   vertical-align: middle;
 }
-.wavesDiv{
- height: auto;
+.wavesDiv {
+  height: auto;
 }
-.Navbardiv{
+.Navbardiv {
   padding-top: 20px;
 }
-.card-container{
+.card-container {
   display: grid;
   grid-template-columns: 17.6rem 19rem 20.4rem;
   grid-template-rows: repeat(autofit, min-content);

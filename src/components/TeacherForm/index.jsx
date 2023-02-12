@@ -4,7 +4,10 @@ import { BlueButton, InputField, Toast } from "../index";
 import "./teacherForm.css";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
-import { doesEmailExists, teacherFieldValidator } from "../../services/utils/Validator/validator";
+import {
+  doesEmailExists,
+  teacherFieldValidator,
+} from "../../services/utils/Validator/validator";
 
 const TeacherForm = ({
   apiUrl,
@@ -80,16 +83,28 @@ const TeacherForm = ({
         }
       } else {
         try {
-          const teacherData = {
-            name: teacherName,
-            email: teacherEmail,
-            password: teacherPassword,
-          };
-          await fetchApi(url, callMethod, teacherData);
-          toastNotification("Teacher Edited", "success");
-          setTimeout(() => {
-            window.location.reload();
-          }, 3000);
+          const teacherAlreadyExists = await fetchApi(
+            `http://localhost:5000/api/admin/getTeachers?email=${teacherEmail}`
+          );
+          const teacherIfExists = await teacherAlreadyExists.json();
+          const doesEmailAlreadyExists = doesEmailExists(teacherIfExists);
+          if (doesEmailAlreadyExists.status) {
+            toastNotification(
+              doesEmailAlreadyExists.message,
+              doesEmailAlreadyExists.messageType
+            );
+          } else {
+            const teacherData = {
+              name: teacherName,
+              email: teacherEmail,
+              password: teacherPassword,
+            };
+            await fetchApi(url, callMethod, teacherData);
+            toastNotification("Teacher Edited", "success");
+            setTimeout(() => {
+              window.location.reload();
+            }, 3000);
+          }
         } catch (error) {
           toastNotification("Error Occured", "error");
           setTimeout(() => {

@@ -4,13 +4,17 @@ import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
 import {
   BlueButton,
-  HeaderChip,
+  ModuleTitle,
   InputField,
   MainBox,
   StudentForm,
   Toast,
+  Navbar,
 } from "../index";
-import { isDataFound, searchFieldValidator } from "../../services/utils/Validator/validator";
+import {
+  isDataFound,
+  searchFieldValidator,
+} from "../../services/utils/Validator/validator";
 import "./updateStudentPage.css";
 
 const UpdateStudentPage = () => {
@@ -55,41 +59,44 @@ const UpdateStudentPage = () => {
     }
   };
   return (
-    <MainBox>
-      <HeaderChip headerText={"Update Student"} />
-      {!studentFound ? (
-        <>
-          <div className="search-field">
-            <InputField
-              inputType={"number"}
-              label={"Roll Number:"}
-              placeholder={"Enter Roll Number"}
-              value={rollNumber}
-              onChangeFunction={onChangeRollNumber}
-            />
-          </div>
-          <BlueButton buttonText={"Search"} onSubmitHandler={onSubmit} />
-        </>
-      ) : (
-        <StudentForm
-          buttonTitle={"Update"}
-          apiUrl={updateApiUrl}
-          callMethod="PUT"
-          defaultStudentName={student?.body.student_name}
-          defaultFatherName={student?.body.father_name}
-          defaultDateOfBirth={student?.body.date_of_birth}
-          defaultFatherCNIC={student?.body.father_cnic}
-          defaultBasicFee={student?.body.basic_fee}
-          defaultOthers={student?.body.others}
-          defaultGender={student?.body.gender}
-          defaultRadioChecked={userGenderRadioChecked}
-          defaultStudentClass={student?.body.class}
-          studentFound={studentFound}
-          readOnly={false}
-        />
-      )}
-      <Toast />
-    </MainBox>
+    <>
+      <Navbar />
+      <MainBox>
+        <ModuleTitle headerText={"Update Student"} />
+        {!studentFound ? (
+          <>
+            <div className="search-field">
+              <InputField
+                inputType={"number"}
+                label={"Roll Number:"}
+                placeholder={"Enter Roll Number"}
+                value={rollNumber}
+                onChangeFunction={onChangeRollNumber}
+              />
+            </div>
+            <BlueButton buttonText={"Search"} onSubmitHandler={onSubmit} />
+          </>
+        ) : (
+          <StudentForm
+            buttonTitle={"Update"}
+            apiUrl={updateApiUrl}
+            callMethod="PUT"
+            defaultStudentName={student?.body.student_name}
+            defaultFatherName={student?.body.father_name}
+            defaultDateOfBirth={student?.body.date_of_birth}
+            defaultFatherCNIC={student?.body.father_cnic}
+            defaultBasicFee={student?.body.basic_fee}
+            defaultOthers={student?.body.others}
+            defaultGender={student?.body.gender}
+            defaultRadioChecked={userGenderRadioChecked}
+            defaultStudentClass={student?.body.class}
+            studentFound={studentFound}
+            readOnly={false}
+          />
+        )}
+        <Toast />
+      </MainBox>
+    </>
   );
 };
 

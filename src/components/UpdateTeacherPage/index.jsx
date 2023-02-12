@@ -1,12 +1,21 @@
 import React, { useState } from "react";
-import HeaderChip from "../ModuleTitle";
-import { TeacherForm, InputField, BlueButton, Toast } from "../index";
+import {
+  TeacherForm,
+  InputField,
+  BlueButton,
+  Toast,
+  ModuleTitle,
+  Navbar,
+} from "../index";
 import MainBox from "../UserManagementMainDiv";
 import fetchApi from "../FetchApi";
 import "./updateTeacherPage.css";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
-import { isDataFound, searchFieldValidator } from "../../services/utils/Validator/validator";
+import {
+  isDataFound,
+  searchFieldValidator,
+} from "../../services/utils/Validator/validator";
 const UpadteTeacherPage = () => {
   const [teacherId, setTeacherId] = useState("");
   const onChangeTeacherId = (newValue) => {
@@ -42,37 +51,40 @@ const UpadteTeacherPage = () => {
     }
   };
   return (
-    <MainBox>
-      <HeaderChip headerText={"Update Teacher"} />
-      {teacherFound ? (
-        teacherData.body ? (
-          <TeacherForm
-            apiUrl={api}
-            callMethod={"PUT"}
-            defaultTeacherName={teacherData?.body.name}
-            defaultTeacherEmail={teacherData?.body.email}
-            defaultTeacherPassword={teacherData?.body.password}
-            readOnly={false}
-          />
-        ) : (
-          <div>Teacher not exists</div>
-        )
-      ) : (
-        <>
-          <div className="search-field">
-            <InputField
-              inputType={"number"}
-              label={"Teacher ID:"}
-              placeholder={"Enter ID"}
-              value={teacherId}
-              onChangeFunction={onChangeTeacherId}
+    <>
+      <Navbar />
+      <MainBox>
+        <ModuleTitle headerText={"Update Teacher"} />
+        {teacherFound ? (
+          teacherData.body ? (
+            <TeacherForm
+              apiUrl={api}
+              callMethod={"PUT"}
+              defaultTeacherName={teacherData?.body.name}
+              defaultTeacherEmail={teacherData?.body.email}
+              defaultTeacherPassword={teacherData?.body.password}
+              readOnly={false}
             />
-          </div>
-          <BlueButton buttonText={"Search"} onSubmitHandler={onSubmit} />
-        </>
-      )}
-      <Toast />
-    </MainBox>
+          ) : (
+            <div>Teacher not exists</div>
+          )
+        ) : (
+          <>
+            <div className="search-field">
+              <InputField
+                inputType={"number"}
+                label={"Teacher ID:"}
+                placeholder={"Enter ID"}
+                value={teacherId}
+                onChangeFunction={onChangeTeacherId}
+              />
+            </div>
+            <BlueButton buttonText={"Search"} onSubmitHandler={onSubmit} />
+          </>
+        )}
+        <Toast />
+      </MainBox>
+    </>
   );
 };
 
