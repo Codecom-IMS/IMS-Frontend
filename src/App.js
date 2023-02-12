@@ -1,10 +1,8 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import InputAttendancePage from "./components/inputAttendancePage";
-import EditAttendancePage from "./components/editAttendancePage";
-import Dashboard from "./components/dashboard";
 import StartPoint from "./components/StartPoint";
-import ReportsPage from "./components/reportsPage";
+import ReportPage from "./components/ReportsPage";
+import ReportsPageMain from "./components/ReportsPageMain";
 
 function App() {
   const router = createBrowserRouter([
@@ -13,21 +11,29 @@ function App() {
       element: <StartPoint />,
       children: [
         {
-          path: "/inputAttendance",
-          element: <InputAttendancePage />,
+          path: "/reportsPage",
+          element: <ReportsPageMain />,
         },
         {
-          path: "/editAttendance",
-          element: <EditAttendancePage/>,
+          path: "/reportsPage/feeReports",
+          element: (
+            <ReportPage
+              endPoint1="getOneStudentFeeReport"
+              endPoint2="getWholeClassFeeReport"
+              children="Fee Report"
+            />
+          ),
         },
         {
-          path: "/dashBoard",
-          element: <Dashboard />,
+          path: "/reportsPage/attendanceReports",
+          element: (
+            <ReportPage
+              endPoint1="getOneStudentAttendance"
+              endPoint2="getClassAttendance"
+              children="Attendance Report"
+            />
+          ),
         },
-        {
-          path: "/reports",
-          element: <ReportsPage/>
-        }
       ],
     },
   ]);

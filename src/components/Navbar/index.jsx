@@ -1,19 +1,19 @@
 import React from "react";
-import {FaArrowLeft, FaHome } from "react-icons/fa";
+import { FaArrowLeft, FaHome } from "react-icons/fa";
 import "./navbar.css";
 function Navbar() {
   return (
     <div className="Navbardiv">
-      <div class="Navbar">
-        <div class="Navbar__icon">
+      <div className="Navbar">
+        <div className="Navbar__icon">
           <FaArrowLeft />
         </div>
-        <text style={{color: "black"}}>Institute Monitoring System</text>
-        <div class="Navbar__icon">
-        <FaHome />
+        <p>Institute Monitoring System</p>
+        <div className="Navbar__icon">
+          <FaHome />
         </div>
       </div>
-      </div>
+    </div>
   );
 }
 

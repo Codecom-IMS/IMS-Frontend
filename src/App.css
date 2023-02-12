@@ -7,7 +7,6 @@
   height: 40vmin;
   pointer-events: none;
   justify-content: center;
-
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -18,7 +17,7 @@
 
 .App-header {
   justify-content: center;
-  height: fit-content;
+  /* height: fit-content; */
   position: relative;
   text-align: center;
   background: linear-gradient(
@@ -26,8 +25,6 @@
     rgba(84, 58, 183, 1) 0%,
     rgba(0, 172, 193, 1) 100%
   );
-  
-
 }
 
 .App-link {
@@ -67,11 +64,22 @@
   display: inline-block;
   vertical-align: middle;
 }
-.wavesDiv{
- height: auto;
+.wavesDiv {
+  height: auto;
 }
-.Navbardiv{
-  justify-content: left;
+.Navbardiv {
+  display: flex;
+  justify-content: center;
   /* padding-left: 70px ; */
   padding-top: 20px;
+}
+.card-container {
+  grid-template-columns: 17.6rem 19rem 20.4rem;
+  grid-template-rows: repeat(autofit, min-content);
+  grid-column-gap: 5rem;
+  grid-row-gap: 2.5rem;
+  margin-top: 30px;
+  align-items: center;
+  /* background: var(--greyLight-1); */
+  display: flex;
 }

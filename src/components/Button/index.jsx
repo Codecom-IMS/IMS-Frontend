@@ -1,12 +1,11 @@
 import React from "react";
 import "./button.css";
 
-function Button(props) {
-  const {buttonName} =props
+function Button({ buttonName, buttonChange }) {
   return (
-      <button class="btn btn__primary" onClick={props.onClick}>
-        {buttonName}
-      </button>
+    <button className="btn btn__primary" onClick={buttonChange}>
+      {buttonName}
+    </button>
   );
 }
 

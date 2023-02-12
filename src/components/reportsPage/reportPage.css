@@ -1,0 +1,13 @@
+.radio-container {
+  display: flex;
+  flex-direction: row;
+  column-gap: 3rem;
+  margin-top: 5rem;
+  padding-top: 1rem;
+}
+.inputRadio {
+  display: flex;
+  flex-direction: row;
+  margin-top: -2rem;
+  column-gap: 3rem;
+}
