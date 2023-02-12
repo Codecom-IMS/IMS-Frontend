@@ -1,5 +1,5 @@
 import React from "react";
-import "./RedButton.css";
+import "./redButton.css";
 const RedButton = ({ buttonText, onSubmitHandler }) => {
   return (
     <div className="btn btn__red" onClick={onSubmitHandler}>

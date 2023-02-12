@@ -10,8 +10,8 @@ import {
 import fetchApi from "../FetchApi";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
-import "./DeleteStudentPage.css";
-import { isDataFound, searchFieldValidator } from "../Validator/validator";
+import "./deleteStudentPage.css";
+import { isDataFound, searchFieldValidator } from "../../services/utils/Validator/validator";
 
 const DeleteStudentPage = () => {
   const [rollNumber, setRollNumber] = useState("");

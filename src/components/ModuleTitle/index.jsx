@@ -1,5 +1,5 @@
 import React from "react";
-import "./ModuleTitle.css";
+import "./moduleTitle.css";
 const HeaderChip = ({ headerText }) => {
   return (
     <div>

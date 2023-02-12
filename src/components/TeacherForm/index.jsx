@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import fetchApi from "../FetchApi";
 import { BlueButton, InputField, Toast } from "../index";
-import "./TeacherForm.css";
+import "./teacherForm.css";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
-import { teacherFieldValidator } from "../Validator/validator";
+import { doesEmailExists, teacherFieldValidator } from "../../services/utils/Validator/validator";
 
 const TeacherForm = ({
   apiUrl,
@@ -35,46 +35,70 @@ const TeacherForm = ({
   };
   const onSubmit = async () => {
     const url = apiUrl ? apiUrl : "http://localhost:5000/api/admin/addTeacher";
-    if (callMethod === "POST") {
-      const areFiledsValid = teacherFieldValidator(
-        teacherName,
-        teacherEmail,
-        teacherPassword
-      );
-      if (areFiledsValid.status) {
+    const areFiledsValid = teacherFieldValidator(
+      teacherName,
+      teacherEmail,
+      teacherPassword
+    );
+    if (areFiledsValid.status) {
+      if (callMethod === "POST") {
         try {
           const teachers = await fetchApi(
             "http://localhost:5000/api/admin/getTeachers"
           );
           const totalTeachers = await teachers.json();
           const teacherId = parseInt(totalTeachers.body.length) + 1;
+          const teacherAlreadyExists = await fetchApi(
+            `http://localhost:5000/api/admin/getTeachers?email=${teacherEmail}`
+          );
+          const teacherIfExists = await teacherAlreadyExists.json();
+          const doesEmailAlreadyExists = doesEmailExists(teacherIfExists);
+          if (doesEmailAlreadyExists.status) {
+            toastNotification(
+              doesEmailAlreadyExists.message,
+              doesEmailAlreadyExists.messageType
+            );
+          } else {
+            const teacherData = {
+              id: teacherId,
+              name: teacherName,
+              email: teacherEmail,
+              password: teacherPassword,
+              status: "serving",
+            };
+            await fetchApi(url, callMethod, teacherData);
+            toastNotification(`Teacher Added: ID = ${teacherId}`, "success");
+            setTimeout(() => {
+              window.location.reload();
+            }, 3000);
+          }
+        } catch (error) {
+          toastNotification("Error Occure", "error");
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
+        }
+      } else {
+        try {
           const teacherData = {
-            id: teacherId,
             name: teacherName,
             email: teacherEmail,
             password: teacherPassword,
-            status: "serving",
           };
           await fetchApi(url, callMethod, teacherData);
-          toastNotification("Teacher Added", "success");
+          toastNotification("Teacher Edited", "success");
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
         } catch (error) {
-          toastNotification("Error Occure", "error");
+          toastNotification("Error Occured", "error");
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
         }
-      } else {
-        toastNotification(areFiledsValid.message, areFiledsValid.messageType);
       }
     } else {
-      try {
-        const teacherData = {
-          name: teacherName,
-          email: teacherEmail,
-          password: teacherPassword,
-        };
-        await fetchApi(url, callMethod, teacherData);
-        toastNotification("Teacher Edited", "success");
-      } catch (error) {
-        toastNotification("Error Occured", "error");
-      }
+      toastNotification(areFiledsValid.message, areFiledsValid.messageType);
     }
   };
   return (

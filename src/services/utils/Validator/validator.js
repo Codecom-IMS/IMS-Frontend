@@ -4,8 +4,7 @@ const studentFieldsValidator = (
   fatherCNIC,
   basicFee,
   others,
-  dateOfBirth,
-  className
+  dateOfBirth
 ) => {
   if (!studentName) {
     return {
@@ -31,22 +30,28 @@ const studentFieldsValidator = (
       message: "Basic Fee Empty",
       messageType: "error",
     };
+  } else if (basicFee < 0) {
+    return {
+      status: false,
+      message: "Basic Fee Invalid",
+      messageType: "error",
+    };
   } else if (others === undefined || others === "") {
     return {
       status: false,
       message: "Others Empty",
       messageType: "error",
     };
+  } else if (others < 0) {
+    return {
+      status: false,
+      message: "Invalid Others",
+      messageType: "error",
+    };
   } else if (!dateOfBirth) {
     return {
       status: false,
       message: "Date Of Birth Empty",
-      messageType: "error",
-    };
-  } else if (!className) {
-    return {
-      status: false,
-      message: "Class Name Empty",
       messageType: "error",
     };
   } else {
@@ -109,17 +114,34 @@ const isDataFound = (apiData) => {
       message: "Data Not Found",
       messageType: "error",
     };
-  }else if(apiData.body.status === "inactive" || apiData.body.status === "not serving"){
-    return(
-      {
-        status: false,
-        message: "User Already Deleted",
-        messageType: "error"
-      }
-    )
- } else {
+  } else if (
+    apiData.body.status === "inactive" ||
+    apiData.body.status === "not serving"
+  ) {
+    return {
+      status: false,
+      message: "User Already Deleted",
+      messageType: "error",
+    };
+  } else {
     return {
       status: true,
+      message: "",
+      messageType: "success",
+    };
+  }
+};
+
+const doesEmailExists = (teacherData) => {
+  if (teacherData.body) {
+    return {
+      status: true,
+      message: "Email Already In Use",
+      messageType: "error",
+    };
+  } else {
+    return {
+      status: false,
       message: "",
       messageType: "success",
     };
@@ -131,4 +153,5 @@ module.exports = {
   teacherFieldValidator,
   searchFieldValidator,
   isDataFound,
+  doesEmailExists,
 };

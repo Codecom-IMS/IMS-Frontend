@@ -1,11 +1,11 @@
 import React from "react";
-import { InputField, RadioButton, BlueButton, Toast } from "../index";
+import { InputField, RadioButton, BlueButton, Toast, DropDown } from "../index";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
-import "./StudentForm.css";
+import "./studentForm.css";
 import { useState } from "react";
 import fetchApi from "../FetchApi";
-import {studentFieldsValidator} from "../Validator/validator";
+import { studentFieldsValidator } from "../../services/utils/Validator/validator";
 
 const StudentForm = ({
   apiUrl,
@@ -17,11 +17,26 @@ const StudentForm = ({
   defaultDateOfBirth = "",
   defaultBasicFee = "",
   defaultOthers = "",
-  defaultStudentClass = "",
+  defaultStudentClass = "PG",
   defaultGender = "male",
   defaultRadioChecked = true,
   readOnly,
 }) => {
+  const availableClasses = [
+    "PG",
+    "Nursery",
+    "KG",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+  ];
   let rollNumber;
   const [studentName, setStudentName] = useState(defaultStudentName);
   const onChnageStudentName = (newValue) => {
@@ -67,8 +82,7 @@ const StudentForm = ({
       fatherCNIC,
       basicFee,
       others,
-      dateOfBirth,
-      studentClass
+      dateOfBirth
     );
     if (valid.status) {
       const currentDate = new Date();
@@ -109,7 +123,10 @@ const StudentForm = ({
           };
 
           await fetchApi(url, callMethod, studentData);
-          toastNotification(`Student Added Successfully Roll Number = ${rollNumber}`, "success");
+          toastNotification(
+            `Student Added Successfully Roll Number = ${rollNumber}`,
+            "success"
+          );
           setTimeout(() => {
             window.location.reload();
           }, 3000);
@@ -209,12 +226,10 @@ const StudentForm = ({
         />
       </div>
       <div className="radio-div">
-        <InputField
-          inputType={"text"}
-          label={"Class:"}
-          placeholder={"Class"}
-          value={studentClass}
-          onChangeFunction={onChangeStudentClass}
+        <DropDown
+          handleChange={onChangeStudentClass}
+          defaultSelected={defaultStudentClass}
+          arrayOfOptions={availableClasses}
           readOnly={readOnly}
         />
         <div className="radio-container">

@@ -3,10 +3,10 @@ import HeaderChip from "../ModuleTitle";
 import { TeacherForm, InputField, BlueButton, Toast } from "../index";
 import MainBox from "../UserManagementMainDiv";
 import fetchApi from "../FetchApi";
-import "./UpdateTeacherPage.css";
+import "./updateTeacherPage.css";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
-import { isDataFound, searchFieldValidator } from "../Validator/validator";
+import { isDataFound, searchFieldValidator } from "../../services/utils/Validator/validator";
 const UpadteTeacherPage = () => {
   const [teacherId, setTeacherId] = useState("");
   const onChangeTeacherId = (newValue) => {

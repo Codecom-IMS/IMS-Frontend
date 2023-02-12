@@ -10,8 +10,8 @@ import {
   StudentForm,
   Toast,
 } from "../index";
-import { isDataFound, searchFieldValidator } from "../Validator/validator";
-import "./UpdateStudentPage.css";
+import { isDataFound, searchFieldValidator } from "../../services/utils/Validator/validator";
+import "./updateStudentPage.css";
 
 const UpdateStudentPage = () => {
   const [rollNumber, setRollNumber] = useState("");

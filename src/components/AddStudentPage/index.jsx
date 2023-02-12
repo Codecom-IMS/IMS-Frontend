@@ -1,5 +1,5 @@
 import React from "react";
-import "./AddStudentPage.css";
+import "./addStudentPage.css";
 import { MainBox, HeaderChip, StudentForm } from "../index";
 
 const AddStudentPage = () => {

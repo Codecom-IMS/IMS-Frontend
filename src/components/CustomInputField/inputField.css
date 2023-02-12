@@ -32,8 +32,8 @@
 .field-label {
   margin-top: 0.5rem;
   display: inline-block;
-  width: 100px;
-  text-align: right;
+  width: 9rem;
+  text-align: center;
 }
 @media screen and (max-width: 900px) {
   .field-label {

@@ -9,9 +9,9 @@ import {
 } from "../index";
 import "react-toastify/ReactToastify.min.css";
 import fetchApi from "../FetchApi";
-import "./DeleteTeacherPage.css";
+import "./deleteTeacherPage.css";
 import { toast } from "react-toastify";
-import { isDataFound, searchFieldValidator } from "../Validator/validator";
+import { isDataFound, searchFieldValidator } from "../../services/utils/Validator/validator";
 const DeleteTeacherPage = () => {
   const [teacherId, setTeacherId] = useState("");
   const onChangeTeacherId = (newValue) => {

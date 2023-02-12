@@ -1,5 +1,5 @@
 import React from "react";
-import "./UserManagementMainDiv.css";
+import "./userManagementMainDiv.css";
 function MainBox({ children }) {
   return (
     <div className="container">

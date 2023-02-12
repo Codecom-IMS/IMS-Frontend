@@ -5,7 +5,6 @@ import {
   AddTeacherPage,
   DeleteStudentPage,
   DeleteTeacherPage,
-  LandingPage,
   MainPage,
   NavBar,
   StudentPage,
@@ -17,7 +16,7 @@ import {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LandingPage />,
+    element: <MainPage />,
     children: [
       {
         path: "/mainPage",

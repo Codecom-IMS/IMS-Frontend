@@ -1,5 +1,5 @@
 import React from "react";
-import "./InputField.css";
+import "./inputField.css";
 
 const InputField = ({
   inputId,
@@ -14,7 +14,7 @@ const InputField = ({
   return (
     <>
       <div className="field-label" id={labelId}>
-        <label htmlFor="">{label}</label>
+        <label>{label}</label>
       </div>
       <input
         type={inputType}

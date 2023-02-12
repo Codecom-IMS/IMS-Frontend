@@ -3,6 +3,7 @@ import React from "react";
 import { Card, MainBox, HeaderChip } from "../../components";
 import teacherImage from "../../assets/teacher.png";
 import studentImage from "../../assets/student.png";
+import { Outlet } from "react-router-dom";
 
 const MainPage = () => (
   <MainBox>
@@ -19,6 +20,7 @@ const MainPage = () => (
         path={"./teacherPage"}
       />
     </div>
+    <Outlet />
   </MainBox>
 );
 
