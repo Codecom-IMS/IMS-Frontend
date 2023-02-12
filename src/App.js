@@ -20,6 +20,7 @@ import {
   UpdateStudentPage,
   UpdateTeacherPage,
 } from "./components/index";
+import { FeeManagement } from "./components";
 function App() {
   const router = createBrowserRouter([
     {
@@ -95,6 +96,10 @@ function App() {
           path: "/teacher-dashboard/mainPage/teacherPage/deleteTeacherPage",
           element: <DeleteTeacherPage />,
         },
+        {
+          path:"/teacher-dashboard/feeManagement",
+          element: <FeeManagement />,
+        }
       ],
     },
   ]);
