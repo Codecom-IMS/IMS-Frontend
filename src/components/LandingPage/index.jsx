@@ -2,7 +2,7 @@ import React from "react";
 import Card from "../card/index";
 import adminImage from "../../assets/images/admin.png";
 import teacherImage from "../../assets/images/teacher.png";
-import HeaderChip from "../HeaderChip";
+import HeaderChip from "../LoginHeaderChip";
 import MainBox from "../MainBox";
 function LandingPage() {
   return (

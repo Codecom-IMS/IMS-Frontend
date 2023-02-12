@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css";
+import "./loginHeaderChip.css";
 
 const HeaderChip = ({ headerText }) => {
   return (

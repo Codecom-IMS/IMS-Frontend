@@ -1,12 +1,18 @@
 import React from "react";
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
-import "./navbar.css";
+import {  FaSignOutAlt, FaHome } from "react-icons/fa";
+import "./navBar.css";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 function Navbar() {
   const Navigate = useNavigate();
+  const hnadleHomeButton=()=>{
+    Navigate("/");
+    
+  }
   const handleLogout = () => {
     Cookies.remove("Jwt");
+    Cookies.remove("Jwt");
+
     Navigate("/");
   };
   return (
@@ -14,11 +20,11 @@ function Navbar() {
       <div className="Navbardiv">
         <div className="Navbar">
           <div className="Navbar__icon">
-            <FaArrowLeft onClick={handleLogout} />
+            <FaHome  onClick={hnadleHomeButton} />
           </div>
           <p>Institute Monitoring System</p>
           <div className="Navbar__icon">
-            <FaArrowRight />
+            <FaSignOutAlt onClick={handleLogout}/>
           </div>
         </div>
       </div>

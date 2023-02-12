@@ -6,13 +6,14 @@ import attendanceImage from "../../../assets/images/attendance.png";
 import reportsImage from "../../../assets/images/reports.png";
 import feeImage from "../../../assets/images/fee.png";
 
-import HeaderChip from "../../HeaderChip";
+import HeaderChip from "../../LoginHeaderChip";
 import Navbar from "../../Navbar";
 
 const TeacherDashboard = () => {
   return (
     <>
       <Navbar />
+      
       <MainBox>
         <HeaderChip headerText={"Teacher Dashboard"} />
 

@@ -1,19 +1,18 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../../Button/index";
-import HeaderChip from "../../HeaderChip";
+import Button from "../../LoginButton/index";
+import HeaderChip from "../../LoginHeaderChip";
 import InputField from "../../InputField/index";
 import MainBox from "../../MainBox";
 import Cookies from "js-cookie";
-import "./style.css";
+import "./teacherlogin.css";
 
 const TeacherLogin = ({ Teacher }) => {
   const Navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
-  // const location = useLocation();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -23,15 +22,17 @@ const TeacherLogin = ({ Teacher }) => {
         { email, password }
       );
 
-      console.log("response is", response);
       if (response) {
-        console.log("if condition working");
         const jwt = response.data.data.token;
-        Cookies.set("Teacher Token", jwt);
-        console.log("Jwt Teacher Token: ", Cookies.get("Teacher Token"));
+        Cookies.set("Jwt", jwt, {
+          expires: 1,
+          secure: true,
+          sameSite: "strict",
+        });
+        console.log("Teacher Token: ", Cookies.get("Jwt"));
         Navigate("/teacher-dashboard");
       } else {
-        console.log("if not working");
+        console.log("teacher login failed");
       }
 
       if (email === "" || password === "") {

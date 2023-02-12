@@ -1,14 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
 import Cookies from "js-cookie";
-import Button from "../../Button/index";
-import HeaderChip from "../../HeaderChip";
+import Button from "../../LoginButton/index";
+import HeaderChip from "../../LoginHeaderChip";
 import InputField from "../../InputField/index";
 import MainBox from "../../MainBox";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
-import "./style.css";
+import "./adminLogin.css";
 import Toast from "../../toast/toast";
 
 const AdminLogin = ({ Admin }) => {
@@ -39,7 +39,7 @@ const AdminLogin = ({ Admin }) => {
           sameSite: "strict",
         });
         toastNotification("Token Generated", "success");
-        console.log("Jwt value: ", Cookies.get("Jwt"));
+        console.log("Admin Token: ", Cookies.get("Jwt"));
         Navigate("/admin-dashboard");
       } else {
         console.log("token not found");

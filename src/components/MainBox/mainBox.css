@@ -29,9 +29,6 @@ html {
   box-shadow: 0.8rem 0.8rem 0.8rem rgb(78, 78, 161),
     -0.2rem -0.2rem 1rem rgb(78, 78, 161);
   padding: 40px;
-  display: grid;
-  grid-template-columns: 17.6rem 19rem 20.4rem;
-  grid-template-rows: repeat(autofit, min-content);
   grid-column-gap: 5rem;
   grid-row-gap: 2.5rem;
   align-items: center;

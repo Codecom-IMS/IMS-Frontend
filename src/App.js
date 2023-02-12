@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import LandingPage from "./components/landing-page/index.jsx";
-import AdminLogin from "./components/Login/admin-login/index.jsx";
+import LandingPage from "./components/LandingPage/index.jsx";
+import AdminLogin from "./components/Login/AdminLogin/index.jsx";
 import { Waves } from "./components";
-import TeacherLogin from "./components/Login/teacher-login/index.jsx";
-import AdminDashboard from "./components/Dashboard/admin-dashboard/adminDashboard.jsx";
-import TeacherDashboard from "./components/Dashboard/teacher-dashboard/teacherDashboard.jsx";
+import TeacherLogin from "./components/Login/TeacherLogin/index.jsx";
+import AdminDashboard from "./components/Dashboard/AdminDashboard/adminDashboard.jsx";
+import TeacherDashboard from "./components/Dashboard/TeacherDashboard/teacherDashboard.jsx";
 import StartPoint from "./components/StartPoint";
 import "./_App.css";
 
