@@ -11,7 +11,7 @@ import {
   Field,
   Toast,
 } from "../index";
-import { dataValidator, rollNumberValidator } from "../FeeValidator/index";
+import { dataValidator, rollNumberValidator } from "../../services/utils/FeeValidator/index";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
 function FeeManagement() {
