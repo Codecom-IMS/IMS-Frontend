@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MainBox from "../MainBox";
-import Form from "../InputForm";
+import InputForm from "../InputForm";
 import Headerchip from "../HeaderChip";
 import Button from "../Button";
 import AttendanceFetchApi from "../AttendanceFetchApi";
@@ -72,7 +72,7 @@ export default function InputAttendancePage() {
         ) : (
           <>
             <Headerchip HeaderText={"Input Attendance"} />
-            <Form
+            <InputForm
               text="Enter Class"
               type="classes"
               placeholder="1-10"

@@ -1,6 +1,6 @@
 import React from "react";
 import { FaArrowLeft, FaHome } from "react-icons/fa";
-import "./navbar.css";
+import "./navBar.css";
 function Navbar() {
   return (
     <div className="Navbardiv">

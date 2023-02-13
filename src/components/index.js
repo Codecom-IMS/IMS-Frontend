@@ -1,6 +1,6 @@
 export { default as DateField } from "./DateField";
 export { default as FetchData } from "./FetchData";
-export { default as Form } from "./InputForm";
+export { default as InputForm } from "./InputForm";
 export { default as MainBox } from "./MainBox";
 export { default as ReportPage } from "./ReportsPage";
 export { default as ReportsPageMain } from "./ReportsPageMain";
@@ -9,7 +9,6 @@ export { default as AttendanceTable } from "./ReportsTable/attendanceReportTable
 export { default as FeeTable } from "./ReportsTable/feeReportTable";
 export { default as StartPoint } from "./StartPoint";
 export { default as Waves } from "./Waves";
-export { default as MainBox } from "./UserManagementMainDiv";
 export { default as ModuleTitle } from "./ModuleTitle";
 export { default as BlueButton } from "./BlueButton";
 export { default as RedButton } from "./RedButton";
@@ -36,3 +35,4 @@ export { default as LoginHeaderChip } from "./LoginHeaderChip";
 export {default as Form} from "./Form";
 export {default as Field} from "./DataField";
 export {default as AddFeeDiv} from "./AddFee";
+export { default as FeeManagement } from "./FeeManagement";

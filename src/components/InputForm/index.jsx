@@ -1,4 +1,4 @@
-import "./AttendanceForm.css";
+import "./inputForm.css";
 function Form({ text, type, placeholder, handleChange }) {
   const options = [
     <option className="dropDownContent" key="PG" value="pg">
@@ -19,7 +19,7 @@ function Form({ text, type, placeholder, handleChange }) {
     );
   }
   return (
-    <div>
+    <>
       <div className="form">
         <h1 className="h1">{text}</h1>
         {type === "classes" ? (
@@ -35,7 +35,7 @@ function Form({ text, type, placeholder, handleChange }) {
           />
         )}
       </div>
-    </div>
+    </>
   );
 }
 

@@ -34,7 +34,7 @@ const TeacherDashboard = () => {
           <Card
             image={reportsImage}
             title={"Reports Module"}
-            path={"./admin"}
+            path={"./reportsPage"}
           />
           <Card image={feeImage} title={"Fee Module"} path={"./feeManagement"} />
         </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../Button";
 import AttendanceFetchApi from "../AttendanceFetchApi";
-import Form from "../InputForm";
+import InputForm from "../InputForm";
 import HeaderChip from "../HeaderChip";
 import MainBox from "../MainBox";
 import Navbar from "../Navbar";
@@ -74,13 +74,13 @@ export default function EditAttendancePage() {
         ) : (
           <>
             <HeaderChip HeaderText={"Edit Attendance"} />
-            <Form
+            <InputForm
               text="Enter Class"
               type="classes"
               placeholder="1-10"
               handleChange={handleInputDataChange}
             />
-            <Form
+            <InputForm
               text="Enter Date"
               type="Date"
               placeholder="2023-12-30"

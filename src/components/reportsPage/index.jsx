@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import {
   MainBox,
   Navbar,
-  Waves,
-  Form,
+  InputForm,
   HeaderChip,
   Button,
   FeeTable,
@@ -18,7 +17,7 @@ import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
 import "../Button/button.css";
 import "../InputForm/inputForm.css";
-import "../reportsRadioButton/radioButton.css";
+import "../ReportsRadioButton/radioButton.css";
 import "./reportPage.css";
 
 export default function ReportPage({ endPoint1, endPoint2, children }) {
@@ -27,14 +26,12 @@ export default function ReportPage({ endPoint1, endPoint2, children }) {
     setRollNumber(parseInt(inputData));
   };
   const [grade, setGrade] = useState("pg");
-  const changeHandler3 = async (inputData) => {
-    console.log(inputData);
-    setGrade(inputData);
+  const changeHandler3 = async (event) => {
+    setGrade(event.target.value);
   };
-  console.log(grade);
   const [startDate, setStartDate] = useState("");
-  const changeHandler1 = (inputData) => {
-    setStartDate(inputData);
+  const changeHandler1 = (event) => {
+    setStartDate(event.target.value);
   };
   const [endDate, setEndDate] = useState("");
   const changeHandler2 = (inputData) => {
@@ -83,71 +80,66 @@ export default function ReportPage({ endPoint1, endPoint2, children }) {
     }
   };
   return (
-    <div className="App-header">
+    <>
       <Navbar />
-      <div className="inner-header">
-        {condition === true ? (
-          <MainBox>
-            <HeaderChip children={children} />
-            <div className="inputRadio">
-              {methodSelection === "roll_num" ? (
-                <Form
-                  text="Enter Roll Number"
-                  type="number"
-                  placeholder="F18-1234"
-                  onchange={changeHandler}
-                />
-              ) : (
-                <Form
-                  text="Enter Class"
-                  type="classes"
-                  placeholder="1-10"
-                  onchange={changeHandler3}
-                />
-              )}
-              <div className="radio-container">
-                <ReportsRadioButton
-                  label={"Roll Number"}
-                  className={"radio__1"}
-                  id={"radio-1"}
-                  value={"roll_num"}
-                  onChangeMethod={onChangeMethodSelection}
-                  defaultChecked={true}
-                />
-                <ReportsRadioButton
-                  label={"Class"}
-                  className={"radio__2"}
-                  id={"radio-2"}
-                  value={"class"}
-                  onChangeMethod={onChangeMethodSelection}
-                  defaultChecked={false}
-                />
-              </div>
-            </div>
-
-            <div className="fromDiv">
-              <DateField text="From" type="date" onchange={changeHandler1} />
-              <DateField text="To" type="date" onchange={changeHandler2} />
-            </div>
-
-            <Button buttonName="Search" buttonChange={fetchData} />
-          </MainBox>
-        ) : (
-          <MainBox>
-            <HeaderChip children={children} />
-            {children === "Attendance Report" ? (
-              <AttendanceTable apiData={apiData.body} />
+      {condition === true ? (
+        <MainBox>
+          <HeaderChip HeaderText={children} />
+          <div className="inputRadio">
+            {methodSelection === "roll_num" ? (
+              <InputForm
+                text="Enter Roll Number"
+                type="number"
+                placeholder="F18-1234"
+                handleChange={changeHandler}
+              />
             ) : (
-              <FeeTable apiData={apiData.body} />
+              <InputForm
+                text="Enter Class"
+                type="classes"
+                placeholder="1-10"
+                handleChange={changeHandler3}
+              />
             )}
-            <Button buttonName="Refresh" buttonChange={refresh} />
-          </MainBox>
-        )}
-      </div>
-      <div className="wavesdiv">
-        <Waves />
-      </div>
+            <div className="radio-container">
+              <ReportsRadioButton
+                label={"Roll Number"}
+                className={"radio__1"}
+                id={"radio-1"}
+                value={"roll_num"}
+                onChangeMethod={onChangeMethodSelection}
+                defaultChecked={true}
+              />
+              <ReportsRadioButton
+                label={"Class"}
+                className={"radio__2"}
+                id={"radio-2"}
+                value={"class"}
+                onChangeMethod={onChangeMethodSelection}
+                defaultChecked={false}
+              />
+            </div>
+          </div>
+
+          <div className="fromDiv">
+            <DateField text="From" type="date" onchange={changeHandler1} />
+            <DateField text="To" type="date" onchange={changeHandler2} />
+          </div>
+
+          <Button buttonName="Search" buttonChange={fetchData} />
+        </MainBox>
+      ) : (
+        <MainBox>
+          <HeaderChip children={children} />
+          {children === "Attendance Report" ? (
+            <AttendanceTable apiData={apiData.body} />
+          ) : (
+            <FeeTable apiData={apiData.body} />
+          )}
+          <Button buttonName="Refresh" buttonChange={refresh} />
+        </MainBox>
+      )}
       <Toast />
-    </div>
+    </>
   );
 }
