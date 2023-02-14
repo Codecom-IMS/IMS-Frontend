@@ -11,7 +11,6 @@ import LandingPage from "./components/LandingPage/index.jsx";
 import AdminLogin from "./components/Login/AdminLogin/index.jsx";
 import TeacherLogin from "./components/Login/TeacherLogin/index.jsx";
 import AdminDashboard from "./components/Dashboard/AdminDashboard/adminDashboard.jsx";
-import TeacherDashboard from "./components/Dashboard/TeacherDashboard/teacherDashboard.jsx";
 import {
   AddStudentPage,
   AddTeacherPage,
@@ -31,15 +30,23 @@ function App() {
       element: <StartPoint />,
       children: [
         {
-          path: "/teacher-dashboard/attendanceManagementPage",
+          path: "/admin/admin-dashboard/attendanceManagementPage",
           element: <AttendanceManagementPage />,
         },
         {
-          path: "/teacher-dashboard/attendanceManagementPage/editAttendance",
+          path: "/teacher/teacher-dashboard/editAttendance",
           element: <EditAttendancePage />,
         },
         {
-          path: "/teacher-dashboard/attendanceManagementPage/inputAttendance",
+          path: "/admin/admin-dashboard/attendanceManagementPage/editAttendance",
+          element: <EditAttendancePage />,
+        },
+        {
+          path: "/teacher/teacher-dashboard/inputAttendance",
+          element: <InputAttendancePage />,
+        },
+        {
+          path: "/admin/admin-dashboard/attendanceManagementPage/inputAttendance",
           element: <InputAttendancePage />,
         },
         {
@@ -51,7 +58,7 @@ function App() {
           element: <AdminLogin />,
         },
         {
-          path: "/admin-dashboard",
+          path: "/admin/admin-dashboard",
           element: <AdminDashboard />,
         },
         {
@@ -60,51 +67,51 @@ function App() {
         },
 
         {
-          path: "/teacher-dashboard",
-          element: <TeacherDashboard />,
+          path: "/teacher/teacher-dashboard",
+          element: <AttendanceManagementPage />,
         },
         {
-          path: "/teacher-dashboard/mainPage",
+          path: "/admin/admin-dashboard/mainPage",
           element: <MainPage />,
         },
         {
-          path: "/teacher-dashboard/mainPage/studentPage",
+          path: "/admin/admin-dashboard/mainPage/studentPage",
           element: <StudentPage />,
         },
         {
-          path: "/teacher-dashboard/mainPage/teacherPage",
+          path: "/admin/admin-dashboard/mainPage/teacherPage",
           element: <TeacherPage />,
         },
         {
-          path: "/teacher-dashboard/mainPage/studentPage/addStudentPage",
+          path: "/admin/admin-dashboard/mainPage/studentPage/addStudentPage",
           element: <AddStudentPage />,
         },
         {
-          path: "/teacher-dashboard/mainPage/studentPage/updateStudentPage",
+          path: "/admin/admin-dashboard/mainPage/studentPage/updateStudentPage",
           element: <UpdateStudentPage />,
         },
         {
-          path: "/teacher-dashboard/mainPage/studentPage/deleteStudentPage",
+          path: "/admin/admin-dashboard/mainPage/studentPage/deleteStudentPage",
           element: <DeleteStudentPage />,
         },
         {
-          path: "/teacher-dashboard/mainPage/teacherPage/addTeacherPage",
+          path: "/admin/admin-dashboard/mainPage/teacherPage/addTeacherPage",
           element: <AddTeacherPage />,
         },
         {
-          path: "/teacher-dashboard/mainPage/teacherPage/updateTeacherPage",
+          path: "/admin/admin-dashboard/mainPage/teacherPage/updateTeacherPage",
           element: <UpdateTeacherPage />,
         },
         {
-          path: "/teacher-dashboard/mainPage/teacherPage/deleteTeacherPage",
+          path: "/admin/admin-dashboard/mainPage/teacherPage/deleteTeacherPage",
           element: <DeleteTeacherPage />,
         },
         {
-          path:"/teacher-dashboard/feeManagement",
+          path:"/admin/admin-dashboard/feeManagement",
           element: <FeeManagement />,
         },
         {
-          path: "/teacher-dashboard/reportsPage/feeReports",
+          path: "/admin/admin-dashboard/reportsPage/feeReports",
           element: (
             <ReportPage
               endPoint1="getOneStudentFeeReport"
@@ -114,7 +121,7 @@ function App() {
           ),
         },
         {
-          path: "/teacher-dashboard/reportsPage/attendanceReports",
+          path: "/admin/admin-dashboard/reportsPage/attendanceReports",
           element: (
             <ReportPage
               endPoint1="getOneStudentAttendance"
@@ -124,7 +131,7 @@ function App() {
           ),
         },
         {
-          path: "/teacher-dashboard/reportsPage",
+          path: "/admin/admin-dashboard/reportsPage",
           element: <ReportsPageMain />,
         }
       ],

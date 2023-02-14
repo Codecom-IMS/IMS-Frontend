@@ -6,7 +6,7 @@ export default function StartPoint() {
       <div className="inner-header flex">
         <Outlet />
       </div>
-      <div className="wavesdiv">
+      <div>
         <Waves />
       </div>
     </div>

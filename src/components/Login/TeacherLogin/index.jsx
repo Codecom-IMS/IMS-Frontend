@@ -29,8 +29,7 @@ const TeacherLogin = ({ Teacher }) => {
           secure: true,
           sameSite: "strict",
         });
-        console.log("Teacher Token: ", Cookies.get("Jwt"));
-        Navigate("/teacher-dashboard");
+        Navigate("/teacher/teacher-dashboard");
       } else {
         console.log("teacher login failed");
       }

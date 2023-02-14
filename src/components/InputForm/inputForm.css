@@ -17,23 +17,24 @@
   color: var(--greyDark);
   padding-top: 5px;
 }
-.h1 {
-  font-size: 1.2rem;
-  margin-left: -1.8rem;
-  color: var(--greyDark);
-  padding-right: 20px;
-  padding-bottom: 10px;
-}
 .heading {
   font-size: 1.2rem;
   margin-left: -1.8rem;
   color: var(--primary);
   padding-right: 20px;
 }
+@media screen and (max-width:660px) {
+  .fromDiv{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
 .fromDiv {
   display: flex;
-  flex-direction: row;
   font-size: large;
+  justify-content: center;
+  align-items: center;
   column-gap: 2rem;
 }
 
@@ -48,4 +49,16 @@
 }
 .dropDownContent {
   background-color: var(--greyLight-1);
+}
+.inputLable{
+  font-size: 1.2rem;
+  margin-left: -1.8rem;
+  color: var(--greyDark);
+  padding-right: 20px;
+  padding-bottom: 10px;
+}
+.formdiv{
+  grid-column: 3/4;
+  grid-row: 3/4;
+  padding-top: 20px;
 }

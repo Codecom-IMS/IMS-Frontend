@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { React, useState, useEffect } from "react";
 import {
   TeacherForm,
   InputField,
@@ -6,6 +6,7 @@ import {
   Toast,
   ModuleTitle,
   Navbar,
+  PopUp
 } from "../index";
 import MainBox from "../UserManagementMainDiv";
 import fetchApi from "../FetchApi";
@@ -15,8 +16,22 @@ import "react-toastify/ReactToastify.min.css";
 import {
   isDataFound,
   searchFieldValidator,
-} from "../../services/utils/Validator/validator";
+} from "../../services/utils/Validator/fieldsValidator";
+import { adminValidator } from "../../services/utils/authorizer/userAuthorizer";
+
 const UpadteTeacherPage = () => {
+  const [showPopUp, setShowPopUp] = useState(false);
+  const togglePopUp = () => {
+    showPopUp ? setShowPopUp(false) : setShowPopUp(true);
+  };
+  const [role, setRole] = useState("");
+  useEffect(() => {
+    const authrorize = async () => {
+      const result = await adminValidator();
+      setRole(result);
+    };
+    authrorize();
+  }, []);
   const [teacherId, setTeacherId] = useState("");
   const onChangeTeacherId = (newValue) => {
     setTeacherId(newValue.target.value);
@@ -52,7 +67,7 @@ const UpadteTeacherPage = () => {
   };
   return (
     <>
-      <Navbar />
+      <Navbar role={role} onClickHandler={togglePopUp}/>
       <MainBox>
         <ModuleTitle headerText={"Update Teacher"} />
         {teacherFound ? (
@@ -81,6 +96,9 @@ const UpadteTeacherPage = () => {
             </div>
             <BlueButton buttonText={"Search"} onSubmitHandler={onSubmit} />
           </>
+        )}
+        {showPopUp && (
+          <PopUp messageText={"Are You Sure You Want To Logout?"} onClickBlueButton={togglePopUp} redButtonAction={"logout"} />
         )}
         <Toast />
       </MainBox>

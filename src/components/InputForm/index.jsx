@@ -20,8 +20,8 @@ function Form({ text, type, placeholder, handleChange }) {
   }
   return (
     <>
-      <div className="form">
-        <h1 className="h1">{text}</h1>
+      <div className="divform">
+        <label>{text}</label>
         {type === "classes" ? (
           <select className="form__input" onChange={handleChange}>
             {options}

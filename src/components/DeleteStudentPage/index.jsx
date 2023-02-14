@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { React, useState, useEffect } from "react";
 import {
   MainBox,
   ModuleTitle,
@@ -7,6 +7,7 @@ import {
   RedButton,
   Toast,
   Navbar,
+  PopUp
 } from "../index";
 import fetchApi from "../FetchApi";
 import { toast } from "react-toastify";
@@ -15,9 +16,26 @@ import "./deleteStudentPage.css";
 import {
   isDataFound,
   searchFieldValidator,
-} from "../../services/utils/Validator/validator";
+} from "../../services/utils/Validator/fieldsValidator";
+import { adminValidator } from "../../services/utils/authorizer/userAuthorizer";
 
 const DeleteStudentPage = () => {
+  const [redButtonAction,setRedButtonAction] = useState("logout");
+  const [showPopUp, setShowPopUp] = useState(false);
+  const togglePopUp = () => {
+    showPopUp ? setShowPopUp(false) : setShowPopUp(true);
+    if(redButtonAction === "delete"){
+      setRedButtonAction("logout")
+    }
+  };
+  const [role, setRole] = useState("");
+  useEffect(() => {
+    const authrorize = async () => {
+      const result = await adminValidator();
+      setRole(result);
+    };
+    authrorize();
+  }, []);
   const [rollNumber, setRollNumber] = useState("");
   const onChangeRollNumber = (newValue) => {
     setRollNumber(newValue.target.value);
@@ -40,6 +58,8 @@ const DeleteStudentPage = () => {
         if (isRecordFound.status) {
           setStudent(studentData);
           data.body ? setStudentFound(true) : setStudentFound(false);
+          setRedButtonAction("delete")
+          console.log(redButtonAction)
         } else {
           toastNotification(isRecordFound.message, isRecordFound.messageType);
         }
@@ -59,15 +79,17 @@ const DeleteStudentPage = () => {
       const url = `http://localhost:5000/api/admin/deleteStudent?roll_number=${rollNumber}`;
       await fetchApi(url, "DELETE");
       toastNotification("Student Deleted", "success");
+      setShowPopUp(false);
       setStudentFound(false);
     } catch (error) {
       toastNotification("Error Occured", "error");
+      setShowPopUp(false);
       setStudentFound(false);
     }
   };
   return (
     <>
-      <Navbar />
+      <Navbar role={role} onClickHandler={togglePopUp}/>
       <MainBox>
         <ModuleTitle headerText={"Delete Student"} />
         {studentFound ? (
@@ -92,7 +114,7 @@ const DeleteStudentPage = () => {
                 readOnly={true}
               />
             </div>
-            <RedButton buttonText={"Delete"} onSubmitHandler={deleteStudent} />
+            <RedButton buttonText={"Delete"} onSubmitHandler={()=>{setShowPopUp(true); setRedButtonAction("delete");}} />
           </>
         ) : (
           <>
@@ -107,6 +129,9 @@ const DeleteStudentPage = () => {
             </div>
             <BlueButton buttonText={"Search"} onSubmitHandler={onSubmit} />
           </>
+        )}
+        {showPopUp && (
+          <PopUp messageText={"Are You Sure You Want To Logout?"} onClickBlueButton={togglePopUp} redButtonAction={redButtonAction} deleteUserFuntion={deleteStudent}/>
         )}
         <Toast />
       </MainBox>

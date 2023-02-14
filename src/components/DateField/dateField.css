@@ -1,14 +1,3 @@
-:root {
-  --primary-light: #8abdff;
-  --primary: #6d5dfc;
-  --primary-dark: #5b0eeb;
-  --white: #ffffff;
-  --greyLight-1: #e4ebf5;
-  --greyLight-2: #c8d0e7;
-  --greyLight-3: #bec8e4;
-  --greyDark: #9baacf;
-}
-
 .form {
   grid-column: 3/4;
   grid-row: 3/4;
@@ -25,7 +14,7 @@
     -0.2rem -0.2rem 0.5rem var(--white);
   background: none;
   font-family: inherit;
-  color: var(--greyDark);
+  color: var(--primary);
   padding-top: 5px;
 }
 .form__input::placeholder {
@@ -35,12 +24,6 @@
   outline: none;
   box-shadow: inset 0.3rem 0.3rem 0.6rem var(--greyLight-2),
     inset -0.2rem -0.2rem 0.5rem var(--white);
-}
-.h1 {
-  font-size: 1.2rem;
-  margin-top: 1.5rem;
-  color: var(--primary);
-  padding-bottom: 10px;
 }
 .heading {
   font-size: 1.2rem;
@@ -56,7 +39,7 @@
 }
 .date {
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: row;
-  margin-left: 20px;
-  padding-top: 1rem;
 }

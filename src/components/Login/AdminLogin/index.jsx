@@ -11,7 +11,7 @@ import "react-toastify/ReactToastify.min.css";
 import "./adminLogin.css";
 import Toast from "../../Toast";
 
-const AdminLogin = ({ Admin }) => {
+const AdminLogin = () => {
   const Navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,8 +39,7 @@ const AdminLogin = ({ Admin }) => {
           sameSite: "strict",
         });
         toastNotification("Token Generated", "success");
-        console.log("Admin Token: ", Cookies.get("Jwt"));
-        Navigate("/admin-dashboard");
+        Navigate("/admin/admin-dashboard");
       } else {
         console.log("token not found");
       }

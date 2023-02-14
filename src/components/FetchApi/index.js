@@ -1,9 +1,9 @@
-const fetchApi = async (url, callMethod, requsetBody) => {
+const fetchApi = async (url, callMethod, requsetBody,token) => {
   try {
     return callMethod === "GET"
       ? await fetch(url, {
           method: callMethod,
-          headers: { "Content-type": "Application/json" },
+          headers: { "Content-type": "Application/json", "Authorization": `Bearer ${token}`},
         })
       : await fetch(url, {
           method: callMethod,

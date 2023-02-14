@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { React, useState, useEffect } from "react";
 import "./feemanagement.css";
 import {
   MainBox,
@@ -9,6 +9,7 @@ import {
   AddFeeDiv,
   Field,
   Toast,
+  PopUp,
 } from "../index";
 import {
   dataValidator,
@@ -16,7 +17,21 @@ import {
 } from "../../services/utils/FeeValidator/index";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
+import { adminValidator } from "../../services/utils/authorizer/userAuthorizer";
+
 function FeeManagement() {
+  const [showPopUp, setShowPopUp] = useState(false);
+  const togglePopUp = () => {
+    showPopUp ? setShowPopUp(false) : setShowPopUp(true);
+  };
+  const [role, setRole] = useState("");
+  useEffect(() => {
+    const authrorize = async () => {
+      const result = await adminValidator();
+      setRole(result);
+    };
+    authrorize();
+  }, []);
   const [rollNumberInputData, setRollNumberInputData] = useState("");
   const [apiData, setapiData] = useState({
     studentDetails: [],
@@ -71,15 +86,20 @@ function FeeManagement() {
       type: "info",
     });
   };
-
-  let total =
-    parseInt(apiData.studentDetails[0]?.basic_fee) +
-    parseInt(apiData.studentDetails[0]?.others) +
-    parseInt(apiData?.PrevArrears?.arrears);
-
+  let total = 0;
+  if (apiData?.PrevArrears?.arrears === undefined) {
+    total =
+      parseInt(apiData.studentDetails[0]?.basic_fee) +
+      parseInt(apiData.studentDetails[0]?.others);
+  } else {
+    total =
+      parseInt(apiData.studentDetails[0]?.basic_fee) +
+      parseInt(apiData.studentDetails[0]?.others) +
+      parseInt(apiData?.PrevArrears?.arrears);
+  }
   return (
     <>
-      <Navbar />
+      <Navbar role={role} onClickHandler={togglePopUp} />
       {apiData?.studentDetails.length === 0 ? (
         <MainBox>
           <HeaderChip HeaderText={"Fee module"} />
@@ -129,6 +149,13 @@ function FeeManagement() {
             <Button buttonName="Add Fee" buttonChange={addFee} />
           </div>
         </AddFeeDiv>
+      )}
+      {showPopUp && (
+        <PopUp
+          messageText={"Are You Sure You Want To Logout?"}
+          onClickBlueButton={togglePopUp}
+          redButtonAction={"logout"}
+        />
       )}
       <Toast />
     </>

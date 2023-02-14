@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { React, useState, useEffect } from "react";
 import {
   ModuleTitle,
   MainBox,
@@ -7,6 +7,7 @@ import {
   RedButton,
   Toast,
   Navbar,
+  PopUp,
 } from "../index";
 import "react-toastify/ReactToastify.min.css";
 import fetchApi from "../FetchApi";
@@ -15,8 +16,26 @@ import { toast } from "react-toastify";
 import {
   isDataFound,
   searchFieldValidator,
-} from "../../services/utils/Validator/validator";
+} from "../../services/utils/Validator/fieldsValidator";
+import { adminValidator } from "../../services/utils/authorizer/userAuthorizer";
+
 const DeleteTeacherPage = () => {
+  const [redButtonAction, setRedButtonAction] = useState("logout");
+  const [showPopUp, setShowPopUp] = useState(false);
+  const togglePopUp = () => {
+    showPopUp ? setShowPopUp(false) : setShowPopUp(true);
+    if (redButtonAction === "delete") {
+      setRedButtonAction("logout");
+    }
+  };
+  const [role, setRole] = useState("");
+  useEffect(() => {
+    const authrorize = async () => {
+      const result = await adminValidator();
+      setRole(result);
+    };
+    authrorize();
+  }, []);
   const [teacherId, setTeacherId] = useState("");
   const onChangeTeacherId = (newValue) => {
     setTeacherId(newValue.target.value);
@@ -39,6 +58,7 @@ const DeleteTeacherPage = () => {
         if (isRecordFound.status) {
           setTeacher(teacherData);
           data.body ? setTeacherFound(true) : setTeacherFound(false);
+          setRedButtonAction("delete");
         } else {
           toastNotification(isRecordFound.message, isRecordFound.messageType);
         }
@@ -58,16 +78,18 @@ const DeleteTeacherPage = () => {
       const url = `http://localhost:5000/api/admin/deleteTeacher?id=${teacherId}`;
       await fetchApi(url, "DELETE");
       toastNotification("Teacher Deleted", "success");
+      setShowPopUp(false);
       setTeacherFound(false);
     } catch (error) {
       toastNotification("Error Occured", "error");
+      setShowPopUp(false);
       setTeacherFound(false);
     }
   };
 
   return (
     <>
-      <Navbar />
+      <Navbar role={role} onClickHandler={togglePopUp} />
       <MainBox>
         <ModuleTitle headerText={"Delete Teacher"} />
         {teacherFound ? (
@@ -92,7 +114,13 @@ const DeleteTeacherPage = () => {
                 readOnly={true}
               />
             </div>
-            <RedButton buttonText={"Delete"} onSubmitHandler={deleteTeacher} />
+            <RedButton
+              buttonText={"Delete"}
+              onSubmitHandler={() => {
+                setShowPopUp(true);
+                setRedButtonAction("delete");
+              }}
+            />
           </>
         ) : (
           <>
@@ -107,6 +135,14 @@ const DeleteTeacherPage = () => {
             </div>
             <BlueButton buttonText={"Search"} onSubmitHandler={onSubmit} />
           </>
+        )}
+        {showPopUp && (
+          <PopUp
+            messageText={"Are You Sure You Want To Logout?"}
+            onClickBlueButton={togglePopUp}
+            redButtonAction={redButtonAction}
+            deleteUserFuntion={deleteTeacher}
+          />
         )}
         <Toast />
       </MainBox>

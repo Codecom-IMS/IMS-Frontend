@@ -7,7 +7,7 @@ import "react-toastify/ReactToastify.min.css";
 import {
   doesEmailExists,
   teacherFieldValidator,
-} from "../../services/utils/Validator/validator";
+} from "../../services/utils/Validator/fieldsValidator";
 
 const TeacherForm = ({
   apiUrl,

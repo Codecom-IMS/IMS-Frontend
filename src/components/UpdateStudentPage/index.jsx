@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { React, useState, useEffect } from "react";
 import fetchApi from "../FetchApi";
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
@@ -10,14 +10,28 @@ import {
   StudentForm,
   Toast,
   Navbar,
+  PopUp
 } from "../index";
 import {
   isDataFound,
   searchFieldValidator,
-} from "../../services/utils/Validator/validator";
+} from "../../services/utils/Validator/fieldsValidator";
 import "./updateStudentPage.css";
+import { adminValidator } from "../../services/utils/authorizer/userAuthorizer";
 
 const UpdateStudentPage = () => {
+  const [showPopUp, setShowPopUp] = useState(false);
+  const togglePopUp = () => {
+    showPopUp ? setShowPopUp(false) : setShowPopUp(true);
+  };
+  const [role, setRole] = useState("");
+  useEffect(() => {
+    const authrorize = async () => {
+      const result = await adminValidator();
+      setRole(result);
+    };
+    authrorize();
+  }, []);
   const [rollNumber, setRollNumber] = useState("");
   const onChangeRollNumber = (newValue) => {
     setRollNumber(newValue.target.value);
@@ -60,7 +74,7 @@ const UpdateStudentPage = () => {
   };
   return (
     <>
-      <Navbar />
+      <Navbar role={role} onClickHandler={togglePopUp}/>
       <MainBox>
         <ModuleTitle headerText={"Update Student"} />
         {!studentFound ? (
@@ -93,6 +107,9 @@ const UpdateStudentPage = () => {
             studentFound={studentFound}
             readOnly={false}
           />
+        )}
+        {showPopUp && (
+          <PopUp messageText={"Are You Sure You Want To Logout?"} onClickBlueButton={togglePopUp} redButtonAction={"logout"} />
         )}
         <Toast />
       </MainBox>

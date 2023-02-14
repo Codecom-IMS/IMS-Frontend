@@ -21,6 +21,7 @@
   justify-content: center;
   align-items: center;
   font-size: 1.8rem;
+  cursor: pointer;
   color: var(--primary);
 }
 .Navbar p {

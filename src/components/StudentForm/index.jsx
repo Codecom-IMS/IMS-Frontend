@@ -5,7 +5,7 @@ import "react-toastify/ReactToastify.min.css";
 import "./studentForm.css";
 import { useState } from "react";
 import fetchApi from "../FetchApi";
-import { studentFieldsValidator } from "../../services/utils/Validator/validator";
+import { studentFieldsValidator } from "../../services/utils/Validator/fieldsValidator";
 
 const StudentForm = ({
   apiUrl,

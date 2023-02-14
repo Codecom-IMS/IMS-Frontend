@@ -34,7 +34,6 @@
     rgba(84, 58, 183, 1) 0%,
     rgba(0, 172, 193, 1) 100%
   );
-  color: white;
 }
 
 @keyframes App-logo-spin {
@@ -48,14 +47,30 @@
 label {
   color: var(--greyDark);
   padding: 0.4rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: bold;
 }
 @media screen and (max-width: 650px) {
   .card-container {
     flex-direction: column;
   }
 }
+@media screen and (max-width: 1150px) {
+  .dashboard-card-container {
+    flex-direction: column;
+  }
+}
 .card-container {
+  display: grid;
+  grid-template-columns: 17.6rem 19rem 20.4rem;
+  grid-template-rows: repeat(autofit, min-content);
+  grid-column-gap: 5rem;
+  grid-row-gap: 2.5rem;
+  align-items: center;
+  background: var(--greyLight-1);
+  display: flex;
+}
+.dashboard-card-container {
   display: grid;
   grid-template-columns: 17.6rem 19rem 20.4rem;
   grid-template-rows: repeat(autofit, min-content);
@@ -76,7 +91,7 @@ label {
   min-height: 71vh;
   height: fit-content;
   width: 100%;
-  margin: 0;
+  margin-bottom: 1.7rem;
   padding: 0;
 }
 
@@ -87,26 +102,9 @@ label {
   text-align: center;
   flex-direction: column;
 }
-.logo {
-  width: 50px;
-  fill: white;
-  padding-right: 15px;
-  display: inline-block;
-  vertical-align: middle;
-}
 .wavesDiv {
   height: auto;
 }
 .Navbardiv {
   padding-top: 20px;
-}
-.card-container {
-  display: grid;
-  grid-template-columns: 17.6rem 19rem 20.4rem;
-  grid-template-rows: repeat(autofit, min-content);
-  grid-column-gap: 5rem;
-  grid-row-gap: 2.5rem;
-  align-items: center;
-  background: var(--greyLight-1);
-  display: flex;
 }

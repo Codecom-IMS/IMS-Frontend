@@ -1,7 +1,8 @@
+import { API_URL } from "../../constants/constants";
 export default async function AttendanceFetchApi(endPoint, method, data) {
   try {
     if (method === "GET") {
-      const response = await fetch(`http://localhost:5000/api/${endPoint}`, {
+      const response = await fetch(`${API_URL}${endPoint}`, {
         method,
         headers: { "Content-type": "Application/json" },
       });
@@ -14,7 +15,7 @@ export default async function AttendanceFetchApi(endPoint, method, data) {
         return { message: "Data Not Found" };
       }
     } else {
-      const response = await fetch(`http://localhost:5000/api/${endPoint}`, {
+      const response = await fetch(`${API_URL}${endPoint}`, {
         method,
         headers: { "Content-type": "Application/json" },
         body: JSON.stringify(data),

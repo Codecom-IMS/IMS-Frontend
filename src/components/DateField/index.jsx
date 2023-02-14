@@ -2,9 +2,9 @@ import React from "react";
 import "./dateField.css";
 export default function DateField({ text, type, placeholder, onchange }) {
   return (
-    <div>
+    <>
+      <label >{text}</label>
       <div className="date">
-        <h1 className="h1">{text}</h1>
         <input
           type={type}
           className="form__input"
@@ -13,6 +13,6 @@ export default function DateField({ text, type, placeholder, onchange }) {
           required
         />
       </div>
-    </div>
+    </>
   );
 }
