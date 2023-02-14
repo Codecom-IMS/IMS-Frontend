@@ -1,0 +1,110 @@
+:root {
+  --primary-light: #8abdff;
+  --primary: #6d5dfc;
+  --primary-dark: #5b0eeb;
+  --white: #ffffff;
+  --greyLight-1: #e4ebf5;
+  --greyLight-2: #c8d0e7;
+  --greyLight-3: #bec8e4;
+  --greyDark: #9baacf;
+}
+.App {
+  text-align: center;
+  /* display: flex; */
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+  justify-content: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  background: linear-gradient(
+    60deg,
+    rgba(84, 58, 183, 1) 0%,
+    rgba(0, 172, 193, 1) 100%
+  );
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+label {
+  color: var(--greyDark);
+  padding: 0.4rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+@media screen and (max-width: 650px) {
+  .card-container {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 1150px) {
+  .dashboard-card-container {
+    flex-direction: column;
+  }
+}
+.card-container {
+  display: grid;
+  grid-template-columns: 17.6rem 19rem 20.4rem;
+  grid-template-rows: repeat(autofit, min-content);
+  grid-column-gap: 5rem;
+  grid-row-gap: 2.5rem;
+  align-items: center;
+  background: var(--greyLight-1);
+  display: flex;
+}
+.dashboard-card-container {
+  display: grid;
+  grid-template-columns: 17.6rem 19rem 20.4rem;
+  grid-template-rows: repeat(autofit, min-content);
+  grid-column-gap: 5rem;
+  grid-row-gap: 2.5rem;
+  align-items: center;
+  background: var(--greyLight-1);
+  display: flex;
+}
+.radio-container {
+  display: flex;
+  flex-direction: row;
+}
+.li :hover:not(.active) {
+  background-color: rgb(245, 237, 237);
+}
+.inner-header {
+  min-height: 71vh;
+  height: fit-content;
+  width: 100%;
+  margin-bottom: 1.7rem;
+  padding: 0;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+.wavesDiv {
+  height: auto;
+}
+.Navbardiv {
+  padding-top: 20px;
+}

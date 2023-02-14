@@ -1,0 +1,60 @@
+@import url(//fonts.googleapis.com/css?family=Lato:300:400);
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+@media screen and (min-width: 900px) {
+  html {
+    font-size: 75%;
+  }
+}
+.container {
+  height: fit-content;
+  width: fit-content;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.components {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 3rem;
+  box-shadow: 0.8rem 0.8rem 0.8rem rgb(78, 78, 161),
+    -0.2rem -0.2rem 1rem rgb(78, 78, 161);
+  column-gap: 5rem;
+  row-gap: 2.5rem;
+  justify-content: center;
+  align-items: center;
+  background: var(--greyLight-1);
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}
+.H1 {
+  color: var(--greyDark);
+  font-family: "Lato", sans-serif;
+}
+.divcomponents {
+  min-width: 120vh;
+  height: 50vh;
+  display: grid;
+  grid-column-gap: 5rem;
+  grid-row-gap: 2.5rem;
+  justify-content: center;
+  align-items: center;
+  background: var(--white);
+  display: flex;
+  flex-direction: row;
+}
