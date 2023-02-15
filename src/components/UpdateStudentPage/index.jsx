@@ -10,7 +10,7 @@ import {
   StudentForm,
   Toast,
   Navbar,
-  PopUp
+  PopUp,
 } from "../index";
 import {
   isDataFound,
@@ -18,6 +18,7 @@ import {
 } from "../../services/utils/Validator/fieldsValidator";
 import "./updateStudentPage.css";
 import { adminValidator } from "../../services/utils/authorizer/userAuthorizer";
+import { API_URL } from "../../constants/constants";
 
 const UpdateStudentPage = () => {
   const [showPopUp, setShowPopUp] = useState(false);
@@ -38,7 +39,7 @@ const UpdateStudentPage = () => {
   };
   const [studentFound, setStudentFound] = useState(false);
   const [student, setStudent] = useState("");
-  const updateApiUrl = `http://localhost:5000/api/admin/updateStudent/${rollNumber}`;
+  const updateApiUrl = `${API_URL}admin/updateStudent/${rollNumber}`;
   const [userGenderRadioChecked, setUserGenderRadioChecked] = useState(true);
   const toastNotification = (message, messageType) => {
     toast(message, {
@@ -49,7 +50,7 @@ const UpdateStudentPage = () => {
     const isRollNumberValid = searchFieldValidator(rollNumber);
     if (isRollNumberValid.status) {
       try {
-        const url = `http://localhost:5000/api/admin/getStudents?roll_number=${rollNumber}`;
+        const url = `${API_URL}admin/getStudents?roll_number=${rollNumber}`;
         const data = await fetchApi(url, "GET");
         const studentData = await data.json();
         const isRecordFound = isDataFound(studentData);
@@ -74,7 +75,7 @@ const UpdateStudentPage = () => {
   };
   return (
     <>
-      <Navbar role={role} onClickHandler={togglePopUp}/>
+      <Navbar role={role} onClickHandler={togglePopUp} />
       <MainBox>
         <ModuleTitle headerText={"Update Student"} />
         {!studentFound ? (
@@ -109,7 +110,11 @@ const UpdateStudentPage = () => {
           />
         )}
         {showPopUp && (
-          <PopUp messageText={"Are You Sure You Want To Logout?"} onClickBlueButton={togglePopUp} redButtonAction={"logout"} />
+          <PopUp
+            messageText={"Are You Sure You Want To Logout?"}
+            onClickBlueButton={togglePopUp}
+            redButtonAction={"logout"}
+          />
         )}
         <Toast />
       </MainBox>

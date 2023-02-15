@@ -6,6 +6,7 @@ import "./studentForm.css";
 import { useState } from "react";
 import fetchApi from "../FetchApi";
 import { studentFieldsValidator } from "../../services/utils/Validator/fieldsValidator";
+import { API_URL } from "../../constants/constants";
 
 const StudentForm = ({
   apiUrl,
@@ -97,14 +98,10 @@ const StudentForm = ({
         : (month = `${currentDate.getMonth() + 1}`);
       let dateString = `${year}-${month}-${day}`;
       let url;
-      apiUrl
-        ? (url = apiUrl)
-        : (url = "http://localhost:5000/api/admin/addStudent");
+      apiUrl ? (url = apiUrl) : (url = `${API_URL}api/admin/addStudent`);
       if (callMethod === "POST") {
         try {
-          const students = await fetchApi(
-            "http://localhost:5000/api/admin/getStudents"
-          );
+          const students = await fetchApi(`${API_URL}api/admin/getStudents`);
           const totalStudents = await students.json();
           rollNumber = parseInt(totalStudents.body.length) + 1;
           const studentData = {

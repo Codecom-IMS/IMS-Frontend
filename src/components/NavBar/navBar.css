@@ -12,6 +12,11 @@
   align-items: center;
   background-color: var(--greyLight-1);
 }
+@media screen and (max-withd:730px) {
+  .Navbar{
+    width: 100%;
+  }
+}
 .Navbar__icon {
   width: 3rem;
   height: 3rem;

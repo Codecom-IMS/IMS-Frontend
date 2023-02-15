@@ -18,6 +18,7 @@ import {
   searchFieldValidator,
 } from "../../services/utils/Validator/fieldsValidator";
 import { adminValidator } from "../../services/utils/authorizer/userAuthorizer";
+import { API_URL } from "../../constants/constants";
 
 const DeleteTeacherPage = () => {
   const [redButtonAction, setRedButtonAction] = useState("logout");
@@ -51,7 +52,7 @@ const DeleteTeacherPage = () => {
     const isSearchFieldValid = searchFieldValidator(teacherId);
     if (isSearchFieldValid.status) {
       try {
-        const url = `http://localhost:5000/api/admin/getTeachers?id=${teacherId}`;
+        const url = `${API_URL}admin/getTeachers?id=${teacherId}`;
         const data = await fetchApi(url, "GET");
         const teacherData = await data.json();
         const isRecordFound = isDataFound(teacherData);
@@ -75,7 +76,7 @@ const DeleteTeacherPage = () => {
 
   const deleteTeacher = async () => {
     try {
-      const url = `http://localhost:5000/api/admin/deleteTeacher?id=${teacherId}`;
+      const url = `${API_URL}admin/deleteTeacher?id=${teacherId}`;
       await fetchApi(url, "DELETE");
       toastNotification("Teacher Deleted", "success");
       setShowPopUp(false);

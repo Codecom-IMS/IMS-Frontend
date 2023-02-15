@@ -7,6 +7,7 @@ import InputField from "../../InputField/index";
 import MainBox from "../../MainBox";
 import Cookies from "js-cookie";
 import "./teacherlogin.css";
+import { API_URL } from "../../../constants/constants";
 
 const TeacherLogin = ({ Teacher }) => {
   const Navigate = useNavigate();
@@ -17,10 +18,10 @@ const TeacherLogin = ({ Teacher }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(
-        `http://localhost:5000/api/teacher/login`,
-        { email, password }
-      );
+      const response = await axios.post(`${API_URL}teacher/login`, {
+        email,
+        password,
+      });
 
       if (response) {
         const jwt = response.data.data.token;

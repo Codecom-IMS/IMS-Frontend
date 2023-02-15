@@ -10,6 +10,8 @@ import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
 import "./adminLogin.css";
 import Toast from "../../Toast";
+import { API_URL } from "../../../constants/constants";
+
 
 const AdminLogin = () => {
   const Navigate = useNavigate();
@@ -27,7 +29,7 @@ const AdminLogin = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/admin/login`,
+        `${API_URL}admin/login`,
         { email, password }
       );
 
@@ -47,8 +49,6 @@ const AdminLogin = () => {
       if (email === "" || password === "") {
         setError(true);
       } else {
-        // toastNotification("Successfully Login", "info");
-
         setError(false);
       }
     } catch (error) {

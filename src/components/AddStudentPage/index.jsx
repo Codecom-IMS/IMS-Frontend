@@ -3,6 +3,8 @@ import "./addStudentPage.css";
 import { MainBox, ModuleTitle, Navbar, PopUp, StudentForm } from "../index";
 import { adminValidator } from "../../services/utils/authorizer/userAuthorizer";
 
+
+
 const AddStudentPage = () => {
   const [showPopUp, setShowPopUp] = useState(false);
   const togglePopUp = () => {
