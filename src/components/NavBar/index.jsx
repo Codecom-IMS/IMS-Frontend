@@ -2,12 +2,13 @@ import React from "react";
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
 import "./navBar.css";
 
+
 function Navbar({ role, onClickHandler }) {
   let homeButtonURL;
   if (role === "admin") {
-    homeButtonURL = "http://localhost:3000/admin/admin-dashboard";
+    homeButtonURL = "http://20.226.47.171:3000/admin/admin-dashboard";
   } else {
-    homeButtonURL = "http://localhost:3000/teacher/teacher-dashboard";
+    homeButtonURL = "http://20.226.47.171:3000/teacher/teacher-dashboard";
   }
   return (
     <div className="Navbardiv">
