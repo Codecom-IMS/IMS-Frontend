@@ -7,7 +7,7 @@ import {
   RedButton,
   Toast,
   Navbar,
-  PopUp
+  PopUp,
 } from "../index";
 import fetchApi from "../FetchApi";
 import { toast } from "react-toastify";
@@ -18,14 +18,15 @@ import {
   searchFieldValidator,
 } from "../../services/utils/Validator/fieldsValidator";
 import { adminValidator } from "../../services/utils/authorizer/userAuthorizer";
+import { API_URL } from "../../constants/constants";
 
 const DeleteStudentPage = () => {
-  const [redButtonAction,setRedButtonAction] = useState("logout");
+  const [redButtonAction, setRedButtonAction] = useState("logout");
   const [showPopUp, setShowPopUp] = useState(false);
   const togglePopUp = () => {
     showPopUp ? setShowPopUp(false) : setShowPopUp(true);
-    if(redButtonAction === "delete"){
-      setRedButtonAction("logout")
+    if (redButtonAction === "delete") {
+      setRedButtonAction("logout");
     }
   };
   const [role, setRole] = useState("");
@@ -51,15 +52,15 @@ const DeleteStudentPage = () => {
     const isSearchFieldValid = searchFieldValidator(rollNumber);
     if (isSearchFieldValid.status) {
       try {
-        const url = `http://localhost:5000/api/admin/getStudents?roll_number=${rollNumber}`;
+        const url = `${API_URL}admin/getStudents?roll_number=${rollNumber}`;
         const data = await fetchApi(url, "GET");
         const studentData = await data.json();
         const isRecordFound = isDataFound(studentData);
         if (isRecordFound.status) {
           setStudent(studentData);
           data.body ? setStudentFound(true) : setStudentFound(false);
-          setRedButtonAction("delete")
-          console.log(redButtonAction)
+          setRedButtonAction("delete");
+          console.log(redButtonAction);
         } else {
           toastNotification(isRecordFound.message, isRecordFound.messageType);
         }
@@ -76,7 +77,7 @@ const DeleteStudentPage = () => {
 
   const deleteStudent = async () => {
     try {
-      const url = `http://localhost:5000/api/admin/deleteStudent?roll_number=${rollNumber}`;
+      const url = `${API_URL}admin/deleteStudent?roll_number=${rollNumber}`;
       await fetchApi(url, "DELETE");
       toastNotification("Student Deleted", "success");
       setShowPopUp(false);
@@ -89,7 +90,7 @@ const DeleteStudentPage = () => {
   };
   return (
     <>
-      <Navbar role={role} onClickHandler={togglePopUp}/>
+      <Navbar role={role} onClickHandler={togglePopUp} />
       <MainBox>
         <ModuleTitle headerText={"Delete Student"} />
         {studentFound ? (
@@ -114,7 +115,13 @@ const DeleteStudentPage = () => {
                 readOnly={true}
               />
             </div>
-            <RedButton buttonText={"Delete"} onSubmitHandler={()=>{setShowPopUp(true); setRedButtonAction("delete");}} />
+            <RedButton
+              buttonText={"Delete"}
+              onSubmitHandler={() => {
+                setShowPopUp(true);
+                setRedButtonAction("delete");
+              }}
+            />
           </>
         ) : (
           <>
@@ -131,7 +138,12 @@ const DeleteStudentPage = () => {
           </>
         )}
         {showPopUp && (
-          <PopUp messageText={"Are You Sure You Want To Logout?"} onClickBlueButton={togglePopUp} redButtonAction={redButtonAction} deleteUserFuntion={deleteStudent}/>
+          <PopUp
+            messageText={"Are You Sure You Want To Logout?"}
+            onClickBlueButton={togglePopUp}
+            redButtonAction={redButtonAction}
+            deleteUserFuntion={deleteStudent}
+          />
         )}
         <Toast />
       </MainBox>

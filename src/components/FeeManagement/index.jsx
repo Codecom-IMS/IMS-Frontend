@@ -18,6 +18,7 @@ import {
 import { toast } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
 import { adminValidator } from "../../services/utils/authorizer/userAuthorizer";
+import { API_URL } from "../../constants/constants";
 
 function FeeManagement() {
   const [showPopUp, setShowPopUp] = useState(false);
@@ -48,7 +49,7 @@ function FeeManagement() {
     if (isRollNumberValid.status) {
       const method = "GET";
       const getStudentDetails = await fetch(
-        `http://localhost:5000/api/admin/feeDetails?roll_number=${rollNumberInputData}`,
+        `${API_URL}admin/feeDetails?roll_number=${rollNumberInputData}`,
         {
           method,
           headers: { "Content-type": "Application/json" },
@@ -73,7 +74,7 @@ function FeeManagement() {
   const addFee = async () => {
     const method = "POST";
     await fetch(
-      `http://localhost:5000/api/admin/feeDetails`,
+      `${API_URL}admin/feeDetails`,
       {
         method,
         headers: { "Content-type": "Application/json" },

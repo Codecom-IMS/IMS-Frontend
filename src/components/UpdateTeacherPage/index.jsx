@@ -6,7 +6,7 @@ import {
   Toast,
   ModuleTitle,
   Navbar,
-  PopUp
+  PopUp,
 } from "../index";
 import MainBox from "../UserManagementMainDiv";
 import fetchApi from "../FetchApi";
@@ -18,6 +18,7 @@ import {
   searchFieldValidator,
 } from "../../services/utils/Validator/fieldsValidator";
 import { adminValidator } from "../../services/utils/authorizer/userAuthorizer";
+import { API_URL } from "../../constants/constants";
 
 const UpadteTeacherPage = () => {
   const [showPopUp, setShowPopUp] = useState(false);
@@ -38,7 +39,7 @@ const UpadteTeacherPage = () => {
   };
   const [teacherData, setTeacherData] = useState("");
   const [teacherFound, setTeacherFound] = useState(false);
-  const api = `http://localhost:5000/api/admin/updateTeacher/${teacherId}`;
+  const api = `${API_URL}admin/updateTeacher/${teacherId}`;
   const toastNotification = (message, messageType) => {
     toast(message, {
       type: messageType,
@@ -48,7 +49,7 @@ const UpadteTeacherPage = () => {
     const isIdValid = searchFieldValidator(teacherId);
     if (isIdValid.status) {
       try {
-        const url = `http://localhost:5000/api/admin/getTeachers?id=${teacherId}`;
+        const url = `${API_URL}admin/getTeachers?id=${teacherId}`;
         const data = await fetchApi(url, "GET");
         const teacherData = await data.json();
         const isRecordFound = isDataFound(teacherData);
@@ -67,7 +68,7 @@ const UpadteTeacherPage = () => {
   };
   return (
     <>
-      <Navbar role={role} onClickHandler={togglePopUp}/>
+      <Navbar role={role} onClickHandler={togglePopUp} />
       <MainBox>
         <ModuleTitle headerText={"Update Teacher"} />
         {teacherFound ? (
@@ -98,7 +99,11 @@ const UpadteTeacherPage = () => {
           </>
         )}
         {showPopUp && (
-          <PopUp messageText={"Are You Sure You Want To Logout?"} onClickBlueButton={togglePopUp} redButtonAction={"logout"} />
+          <PopUp
+            messageText={"Are You Sure You Want To Logout?"}
+            onClickBlueButton={togglePopUp}
+            redButtonAction={"logout"}
+          />
         )}
         <Toast />
       </MainBox>

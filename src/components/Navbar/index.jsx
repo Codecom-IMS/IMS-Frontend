@@ -1,6 +1,7 @@
 import React from "react";
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
 import "./navBar.css";
+
 function Navbar({ role, onClickHandler }) {
   let homeButtonURL;
   if (role === "admin") {

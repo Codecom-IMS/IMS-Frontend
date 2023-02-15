@@ -8,6 +8,7 @@ import {
   doesEmailExists,
   teacherFieldValidator,
 } from "../../services/utils/Validator/fieldsValidator";
+import { API_URL } from "../../constants/constants";
 
 const TeacherForm = ({
   apiUrl,
@@ -37,7 +38,7 @@ const TeacherForm = ({
     });
   };
   const onSubmit = async () => {
-    const url = apiUrl ? apiUrl : "http://localhost:5000/api/admin/addTeacher";
+    const url = apiUrl ? apiUrl : `${API_URL}api/admin/addTeacher`;
     const areFiledsValid = teacherFieldValidator(
       teacherName,
       teacherEmail,
@@ -46,13 +47,11 @@ const TeacherForm = ({
     if (areFiledsValid.status) {
       if (callMethod === "POST") {
         try {
-          const teachers = await fetchApi(
-            "http://localhost:5000/api/admin/getTeachers"
-          );
+          const teachers = await fetchApi(`${API_URL}api/admin/getTeachers`);
           const totalTeachers = await teachers.json();
           const teacherId = parseInt(totalTeachers.body.length) + 1;
           const teacherAlreadyExists = await fetchApi(
-            `http://localhost:5000/api/admin/getTeachers?email=${teacherEmail}`
+            `${API_URL}admin/getTeachers?email=${teacherEmail}`
           );
           const teacherIfExists = await teacherAlreadyExists.json();
           const doesEmailAlreadyExists = doesEmailExists(teacherIfExists);
@@ -84,7 +83,7 @@ const TeacherForm = ({
       } else {
         try {
           const teacherAlreadyExists = await fetchApi(
-            `http://localhost:5000/api/admin/getTeachers?email=${teacherEmail}`
+            `${API_URL}admin/getTeachers?email=${teacherEmail}`
           );
           const teacherIfExists = await teacherAlreadyExists.json();
           const doesEmailAlreadyExists = doesEmailExists(teacherIfExists);
